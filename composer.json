@@ -18,7 +18,7 @@
     "require": {
         "php": "^7.4|^8.0",
         "illuminate/support": "^8.0",
-        "irazasyed/telegram-bot-sdk": "^3.9",
+        "irazasyed/telegram-bot-sdk": "^3.7",
         "mautic/api-library": "^3.1"
     },
     "require-dev": {
