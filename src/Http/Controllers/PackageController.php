@@ -14,7 +14,6 @@ use Dvhoangfh\Aepay\Services\PackageService;
 use Dvhoangfh\Aepay\Services\PaddleService;
 use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Routing\Controller;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\JsonResponse;
