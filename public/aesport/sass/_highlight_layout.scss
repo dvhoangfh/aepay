@@ -1,0 +1,156 @@
+@import "./variables";
+@import "./mixins";
+
+.highlight-layout {
+    background-color: $darkV2;
+    padding: 36px 0 32px;
+    padding: 68px 0 32px;
+    background-color: $darkV2;
+    padding: 40px 0 30px;
+    .time {
+        color: white;
+        position: relative;
+        &.active {
+            &::before {
+                content: "";
+                position: absolute;
+                width: 8px;
+                height: 8px;
+                border-radius: 50%;
+                left: -14px;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: $green;
+            }
+        }
+    }
+    .head-bar {
+        .title-live {
+            color: $blue-light;
+            position: relative;
+            padding-left: 14px;
+            &::before {
+                content: "";
+                position: absolute;
+                width: 5px;
+                height: 36px;
+                left: 0;
+                top: 50%;
+                transform: translateY(-50%);
+                background-color: $blue-light;
+            }
+        }
+    }
+
+    .card-item {
+        .wrap-time-mobile {
+            display: block;
+            position: absolute;
+            width: 51px;
+            height: 24px;
+            left: 0;
+            top: 12px;
+            background: rgba(25, 28, 47, 0.8);
+            border-radius: 29px 29px 29px 0px;
+            padding: 0 4px;
+            text-align: right;
+            .time {
+                display: inline-flex;
+            }
+        }
+
+        .description {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            > * {
+                width: 100%;
+            }
+            .name-time {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                .left {
+                    img {
+                        margin-right: 5px;
+                    }
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                    font-weight: 500;
+                    font-size: 13px;
+                    line-height: 16px;
+
+                    color: white;
+                    span {
+                        color: $greyV2;
+                    }
+                }
+                .time {
+                    display: none;
+                }
+            }
+            .logo-team {
+                margin-top: 0;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                img {
+                    width: 30px;
+                    height: 30px;
+                }
+                .number {
+                    font-weight: 500;
+                    font-size: 24px;
+                    line-height: 18px;
+                    color: $blue-light;
+                }
+            }
+            .name-team {
+                margin-top: 6px;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                p {
+                    font-weight: 400;
+                    font-size: 14px;
+                    color: white;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .highlight-layout {
+        padding-top: 64px;
+        .card-item {
+            .wrap-time-mobile {
+                display: none;
+            }
+            .description {
+                .name-time {
+                    .left {
+                        font-size: 14px;
+                        line-height: 17px;
+                    }
+                    .time {
+                        display: block;
+                    }
+                }
+                .logo-team {
+                    img {
+                        width: 42px;
+                        height: 42px;
+                    }
+                }
+                .name-team {
+                    p {
+                        font-size: 16px;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,16 @@
+@mixin shadowNormal {
+    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+@mixin flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@mixin fontSize($size) {
+    font-weight: 500;
+    font-size: #{$size}px;
+    line-height: 18px;
+}
+

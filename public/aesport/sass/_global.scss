@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Fira+Sans+Condensed&display=swap");
+@import "./variables";
+:root {
+    --dark: #191C2F;
+    --darkV2: #1E2039;
+    --grey: #828282;
+    --gray: #202020;
+    --blue-light: #00EFFF;
+    --white: #FFFFFF;
+    --red: #EF174B;
+    --gray-hover: #272A47;
+}
+
+body {
+    font-family: 'Fira Sans', sans-serif;
+    background-color: var(--dark);
+}
+
+.content-page {
+    padding-top: 60px;
+    color: var(--grey);
+    padding-bottom: 48px;
+}
+
+@media (min-width: 768px) {
+    .content-page {
+        padding-bottom: 79px;
+    }
+}
+
+.text-highlight {
+    color: $blue-light;
+}
+
+.predict-page, .highlight-page {
+    .predict-layout, .highlight-layout {
+        background-color: unset;
+    }
+}

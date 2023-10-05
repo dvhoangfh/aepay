@@ -1,0 +1,236 @@
+@import "mixins";
+
+.select-prefix-icon {
+    position: relative;
+    width: 228px;
+    color: white;
+
+    select {
+        display: none;
+    }
+
+    .select-selected {
+        user-select: none;
+        border: 1px solid #686868 !important;
+        border-radius: 20px !important;
+        padding: 13px 18px 11px 40px;
+        cursor: pointer;
+        font-size: 16px;
+        line-height: 16px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        &::before {
+            position: absolute;
+            content: "";
+            top: 50%;
+            transform: translateY(-50%);
+            left: 12px;
+            background: url(../assets/icons/icon-champions-league.png) no-repeat;
+            -webkit-background-size: 100% 100%;
+            -moz-background-size: 100%;
+            background-size: 100%;
+            width: 20px;
+            height: 20px;
+        }
+
+        &:after {
+            @include flexCenter();
+            background-position: center;
+            position: absolute;
+            content: "";
+            top: 50%;
+            transform: translateY(-50%);
+            right: 16px;
+            background: url(../assets/icons/icon-arrow-down-white.svg) no-repeat;
+            -webkit-background-size: 100% 100%;
+            -moz-background-size: 100%;
+            background-size: 100%;
+            width: 14px;
+            height: 8px;
+        }
+    }
+
+    .select-selected.select-arrow-active:after {
+        border-color: transparent transparent #fff transparent;
+    }
+
+    .select-items div, .select-selected {
+        background: #191C2F;
+        border-radius: 5px;
+    }
+
+    .select-items div {
+        padding: 6px 20px;
+        border-bottom: 1px solid #10D1FF;
+        cursor: pointer;
+    }
+
+    .select-items {
+        border: 1px solid #10D1FF;
+        position: absolute;
+        background-color: DodgerBlue;
+        border-radius: 5px;
+        top: 100%;
+        left: 0;
+        right: 0;
+        z-index: 99;
+    }
+
+    .select-hide {
+        display: none;
+    }
+
+    .select-items div:hover, .same-as-selected {
+        background-color: rgba(0, 0, 0, 0.1);
+    }
+
+}
+
+.select2-dropdown--below {
+    top: 2px;
+}
+// Live TV
+.select-custom-live-tv {
+    height: 40px !important;
+    width: 200px;
+    background: #191c2f !important;
+    border: 1px solid #686868 !important;
+    border-radius: 20px !important;
+    color: #ffffff;
+   
+
+    .select2-selection--single {
+        height: 40px;
+    }
+    .select2-selection__rendered {
+        padding: 0px 20px 0 20px !important;
+        line-height: 40px !important;
+        color: #ffffff;
+        span {
+            color: #ffffff;
+        }
+    }
+    .select2-selection__arrow {
+        height: 40px !important;
+        b {
+            display: none;
+        }
+        &::after {
+            @include flexCenter();
+            background-position: center;
+            position: absolute;
+            content: "";
+            top: 50%;
+            transform: translateY(-50%);
+            right: 16px;
+            background: url(../assets/icons/icon-arrow-down-white.svg) no-repeat;
+            -webkit-background-size: 100% 100%;
+            -moz-background-size: 100%;
+            background-size: 100%;
+            width: 14px;
+            height: 8px;
+        }
+    }
+}
+
+.select2-container .select2-dropdown.dropdown-select-custom-live-tv {
+    background: #191c2f;
+    border: 1px solid #686868;
+    border-radius: 20px;
+    overflow: hidden !important;
+    color: #ffffff;
+    .select2-results .select2-results__options {
+        .select2-results__option {
+            padding: 10px 20px;
+        }
+        .select2-results__option--selected {
+            background: #191c2f;
+            color: #00efff;
+        }
+        .select2-results__option--highlighted {
+            background: #191c2f;
+            color: #00efff;
+        }
+        .select2-results__option--selectable {
+            transition: all 0.3s ease-in;
+            &:hover {
+                background: #191c2f;
+                color: #00efff;
+            }
+        }
+    }
+}
+
+// match today
+.select-custom-match-today {
+    height: 40px !important;
+    width: 200px !important;
+    background: #354156 !important;
+    border: none !important;
+    border-radius: 20px !important;
+    color: #ffffff;
+   
+
+    .select2-selection--single {
+        height: 40px;
+    }
+    .select2-selection__rendered {
+        padding: 0px 20px 0 20px !important;
+        line-height: 40px !important;
+        color: #ffffff;
+        span {
+            color: #ffffff;
+        }
+    }
+    .select2-selection__arrow {
+        height: 40px !important;
+        b {
+            display: none;
+        }
+        &::after {
+            @include flexCenter();
+            background-position: center;
+            position: absolute;
+            content: "";
+            top: 50%;
+            transform: translateY(-50%);
+            right: 16px;
+            background: url(../assets/icons/icon-arrow-down-white.svg) no-repeat;
+            -webkit-background-size: 100% 100%;
+            -moz-background-size: 100%;
+            background-size: 100%;
+            width: 14px;
+            height: 8px;
+        }
+    }
+}
+
+.select2-container .select2-dropdown.dropdown-select-custom-match-today {
+    background: #354156;
+    border: none;
+    border-radius: 20px;
+    overflow: hidden !important;
+    color: #ffffff;
+    .select2-results .select2-results__options {
+        .select2-results__option {
+            padding: 10px 20px;
+        }
+        .select2-results__option--selected {
+            background: #354156;
+            color: #00efff;
+        }
+        .select2-results__option--highlighted {
+            background: #354156;
+            color: #00efff;
+        }
+        .select2-results__option--selectable {
+            transition: all 0.3s ease-in;
+            &:hover {
+                background: #354156;
+                color: #00efff;
+            }
+        }
+    }
+}

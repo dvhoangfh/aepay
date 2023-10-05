@@ -1,0 +1,27 @@
+@import "./variables";
+@import "./mixins";
+
+.predict-layout {
+    background-color: $darkV2;
+    padding: 36px 0 32px;
+    .card-item {
+        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+        &:hover {
+            background: #354156;
+        }
+    }
+    .card-item .description {
+        .short-info {
+            @include fontSize(16);
+            color: white;
+        }
+        .detail-time {
+            margin-top: 16px;
+            gap: 10px;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 16px;
+            color: white;
+        }
+    }
+}

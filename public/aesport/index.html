@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AE sport</title>
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,700" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="./css/bootstrap/bootstrap-utilities.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    <link href="./css/app.css" rel="stylesheet">
+
+</head>
+
+<body>
+    <!-- header -->
+    <div class="menu-bar">
+        <div class="container">
+            <img src="./assets/icons/logo.svg" />
+            <ul>
+                <li>Fixtures</li>
+                <li>LiveTV</li>
+                <li>Pricing</li>
+                <li>Predict</li>
+                <li>Highlight</li>
+                <li>News</li>
+                <li class="signin-section">
+                    <div class="btn-signin">Sign in</div>
+                    <div class="btn-trial">START TRIAL</div>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- write content page here -->
+    <div class="content-page home-page">
+
+        <!-- Banner section -->
+        <div class="banner container">
+            <picture>
+                <source srcset="./assets/images/banner-pc.png" media="(min-width: 992px)">
+                <source srcset="./assets/images/banner-tablet.png" media="(min-width: 768px)">
+                <img src="./assets/images/banner-mobile.png" alt="banner">
+            </picture>
+        </div>
+
+        <!-- Tag section -->
+        <ul class="list-tag container">
+            <li class="tag-item"><img src="./assets/icons/icon-champions-league.png" alt=""> Champions league</li>
+            <li class="tag-item"><img src="./assets/icons/icon-premier-league.png" alt="">Premier league</li>
+            <li class="tag-item"><img src="./assets/icons/icon-europa-league.png" alt="">Europa league</li>
+            <li class="tag-item"><img src="./assets/icons/icon-la-liga.png" alt="">La Liga</li>
+            <li class="tag-item"><img src="./assets/icons/icon-bundesliga.png" alt="">Bundesliga</li>
+            <li class="tag-item"><img src="./assets/icons/icon-ligue-1.png" alt="">Ligue 1</li>
+            <li class="tag-item"><img src="./assets/icons/icon-italian-erie-a.png" alt="">Italian erie a</li>
+        </ul>
+
+        <!-- hot matches section -->
+        <div class="hot-matches">
+            <div class="container">
+                <div class="table-match">
+                    <div class="head">
+                        <div class="left">
+                            <img class="fire" src="./assets/icons/icon-fire.svg" alt="">
+                            hot matches
+                        </div>
+                    </div>
+                    <div class="row-item-match active">
+                        <div class="info">
+                            <p>PEN_LIVE: 90’</p>
+                            <p>Copa Libertadores</p>
+                        </div>
+                        <div class="teams">
+                            <span class="name-team">Boca Juniors</span>
+                            <img src="./assets/icons/icon-boca-juniors.png" alt="">
+                            <span class="name-team">0 - 0</span>
+                            <img src="./assets/images/logoVillarreal.png" alt="">
+                            <span class="name-team">Corintahians</span>
+                        </div>
+                        <button class="btn-watch">Watch <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
+                    <div class="row-item-match">
+                        <div class="info">
+                            <p>13:40 - Jun 14</p>
+                            <p>Voleyball Nations League</p>
+                        </div>
+                        <div class="teams">
+                            <span class="name-team">Boca Juniors</span>
+                            <img src="./assets/icons/icon-boca-juniors.png" alt="">
+                            <span class="name-team">vs</span>
+                            <img src="./assets/images/logoVillarreal.png" alt="">
+                            <span class="name-team">Corintahians</span>
+                        </div>
+                        <button class="btn-watch">Watch <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
+                    <div class="row-item-match">
+                        <div class="info">
+                            <p>13:40 - Jun 14</p>
+                            <p>Voleyball Nations League</p>
+                        </div>
+                        <div class="teams">
+                            <span class="name-team">Boca Juniors</span>
+                            <img src="./assets/icons/icon-boca-juniors.png" alt="">
+                            <span class="name-team">vs</span>
+                            <img src="./assets/images/logoVillarreal.png" alt="">
+                            <span class="name-team">Corintahians</span>
+                        </div>
+                        <button class="btn-watch">Watch <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
+                    <div class="row-item-match">
+                        <div class="info">
+                            <p>13:40 - Jun 14</p>
+                            <p>Voleyball Nations League</p>
+                        </div>
+                        <div class="teams">
+                            <span class="name-team">Boca Juniors</span>
+                            <img src="./assets/icons/icon-boca-juniors.png" alt="">
+                            <span class="name-team">vs</span>
+                            <img src="./assets/images/logoVillarreal.png" alt="">
+                            <span class="name-team">Corintahians</span>
+                        </div>
+                        <button class="btn-watch">Watch <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
+                    <div class="row-item-match">
+                        <div class="info">
+                            <p>13:40 - Jun 14</p>
+                            <p>Voleyball Nations League</p>
+                        </div>
+                        <div class="teams">
+                            <span class="name-team">Boca Juniors</span>
+                            <img src="./assets/icons/icon-boca-juniors.png" alt="">
+                            <span class="name-team">vs</span>
+                            <img src="./assets/images/logoVillarreal.png" alt="">
+                            <span class="name-team">Corintahians</span>
+                        </div>
+                        <button class="btn-watch">Watch <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
+
+                    <div class="btn-show-more">
+                        <span>Show more</span>
+                        <div class="sharp">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live section -->
+        <div class="live">
+            <div class="container section-focus">
+                <div class="head-bar">
+                    <div class="left">
+                        <div class="title-live">Live</div>
+                    </div>
+                    <div>
+                        <select class="select-region" name="state">
+                        </select>
+                    </div>
+                </div>
+                <div class="content list-card">
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-live.png" />
+                        <div class="description">
+                            <div class="wrap-time-mobile">
+                                <div class="time active">
+                                    30’
+                                </div>
+                            </div>
+
+                            <div class="name-time">
+                                <div class="left">
+                                    <img src="./assets/icons/icon-cup-white.svg" />
+                                    <p>AFC CUP <span> | 20:55 p.m</span></p>
+                                </div>
+                                <div class="time active">
+                                    30’
+                                </div>
+                            </div>
+                            <div class="logo-team">
+                                <img src="./assets/images/logoVillarreal.png" />
+                                <p class="number">2 - 2</p>
+                                <img src="./assets/images/logoRealMadrid.png" />
+                            </div>
+                            <div class="name-team">
+                                <p>Villarreal</p>
+                                <p>Real Madrid</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-live.png" />
+                        <div class="description">
+                            <div class="wrap-time-mobile">
+                                <div class="time active">
+                                    30’
+                                </div>
+                            </div>
+
+                            <div class="name-time">
+                                <div class="left">
+                                    <img src="./assets/icons/icon-cup-white.svg" />
+                                    <p>AFC CUP <span> | 20:55 p.m</span></p>
+                                </div>
+                                <div class="time active">
+                                    30’
+                                </div>
+                            </div>
+                            <div class="logo-team">
+                                <img src="./assets/images/logoVillarreal.png" />
+                                <p class="number">2 - 2</p>
+                                <img src="./assets/images/logoRealMadrid.png" />
+                            </div>
+                            <div class="name-team">
+                                <p>Villarreal</p>
+                                <p>Real Madrid</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-live.png" />
+                        <div class="description">
+                            <div class="wrap-time-mobile">
+                                <div class="time active">
+                                    30’
+                                </div>
+                            </div>
+
+                            <div class="name-time">
+                                <div class="left">
+                                    <img src="./assets/icons/icon-cup-white.svg" />
+                                    <p>AFC CUP <span> | 20:55 p.m</span></p>
+                                </div>
+                                <div class="time active">
+                                    30’
+                                </div>
+                            </div>
+                            <div class="logo-team">
+                                <img src="./assets/images/logoVillarreal.png" />
+                                <p class="number">2 - 2</p>
+                                <img src="./assets/images/logoRealMadrid.png" />
+                            </div>
+                            <div class="name-team">
+                                <p>Villarreal</p>
+                                <p>Real Madrid</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-live.png" />
+                        <div class="description">
+                            <div class="wrap-time-mobile">
+                                <div class="time active">
+                                    30’
+                                </div>
+                            </div>
+
+                            <div class="name-time">
+                                <div class="left">
+                                    <img src="./assets/icons/icon-cup-white.svg" />
+                                    <p>AFC CUP <span> | 20:55 p.m</span></p>
+                                </div>
+                                <div class="time active">
+                                    30’
+                                </div>
+                            </div>
+                            <div class="logo-team">
+                                <img src="./assets/images/logoVillarreal.png" />
+                                <p class="number">2 - 2</p>
+                                <img src="./assets/images/logoRealMadrid.png" />
+                            </div>
+                            <div class="name-team">
+                                <p>Villarreal</p>
+                                <p>Real Madrid</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-more">Show more</div>
+            </div>
+        </div>
+
+        <!-- Match of today section -->
+        <div class="hot-matches blue">
+            <div class="container">
+                <div class="table-match">
+                    <div class="head">
+                        <div class="left">
+                            matches of today
+                        </div>
+                        <div class="right">
+                            <select class="select-match-today" name="">
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row-item-match active">
+                        <div class="info">
+                            <p>PEN_LIVE: 90’</p>
+                            <p>Copa Libertadores</p>
+                        </div>
+                        <div class="teams">
+                            <span class="name-team">Boca Juniors</span>
+                            <img src="./assets/icons/icon-boca-juniors.png" alt="">
+                            <span class="name-team">0 - 0</span>
+                            <img src="./assets/images/logoVillarreal.png" alt="">
+                            <span class="name-team">Corintahians</span>
+                        </div>
+                        <button class="btn-watch">Watch <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
+                    <div class="row-item-match">
+                        <div class="info">
+                            <p>13:40 - Jun 14</p>
+                            <p>Voleyball Nations League</p>
+                        </div>
+                        <div class="teams">
+                            <span class="name-team">Boca Juniors</span>
+                            <img src="./assets/icons/icon-boca-juniors.png" alt="">
+                            <span class="name-team">vs</span>
+                            <img src="./assets/images/logoVillarreal.png" alt="">
+                            <span class="name-team">Corintahians</span>
+                        </div>
+                        <button class="btn-watch">Watch <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
+                    <div class="row-item-match">
+                        <div class="info">
+                            <p>13:40 - Jun 14</p>
+                            <p>Voleyball Nations League</p>
+                        </div>
+                        <div class="teams">
+                            <span class="name-team">Boca Juniors</span>
+                            <img src="./assets/icons/icon-boca-juniors.png" alt="">
+                            <span class="name-team">vs</span>
+                            <img src="./assets/images/logoVillarreal.png" alt="">
+                            <span class="name-team">Corintahians</span>
+                        </div>
+                        <button class="btn-watch">Watch <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
+                    <div class="row-item-match">
+                        <div class="info">
+                            <p>13:40 - Jun 14</p>
+                            <p>Voleyball Nations League</p>
+                        </div>
+                        <div class="teams">
+                            <span class="name-team">Boca Juniors</span>
+                            <img src="./assets/icons/icon-boca-juniors.png" alt="">
+                            <span class="name-team">vs</span>
+                            <img src="./assets/images/logoVillarreal.png" alt="">
+                            <span class="name-team">Corintahians</span>
+                        </div>
+                        <button class="btn-watch">Watch <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
+                    <div class="row-item-match">
+                        <div class="info">
+                            <p>13:40 - Jun 14</p>
+                            <p>Voleyball Nations League</p>
+                        </div>
+                        <div class="teams">
+                            <span class="name-team">Boca Juniors</span>
+                            <img src="./assets/icons/icon-boca-juniors.png" alt="">
+                            <span class="name-team">vs</span>
+                            <img src="./assets/images/logoVillarreal.png" alt="">
+                            <span class="name-team">Corintahians</span>
+                        </div>
+                        <button class="btn-watch">Watch <i class="fa-solid fa-angle-right"></i> </button>
+                    </div>
+
+                    <div class="btn-show-more">
+                        <span>Show more</span>
+                        <div class="sharp">
+                            <i class="fa-solid fa-chevron-down"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Live TV section -->
+        <div class="live-tv">
+            <div class="container section-focus">
+                <div class="head-bar">
+                    <div class="left">
+                        <img src="./assets/icons/icon-title-livetv.svg" />
+                    </div>
+                    <div class="right">
+                        <select class="select-region" name="state">
+                        </select>
+                    </div>
+
+                </div>
+                <div class="content">
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+                    <div class="tv-item active">
+                        <img src="./assets/icons/logo-vtv6.png" />
+                    </div>
+
+                </div>
+                <div class="show-more">
+                    Show more
+                </div>
+            </div>
+        </div>
+
+        <!-- Highlight section -->
+        <div class="live highlight">
+            <div class="container section-focus">
+                <div class="head-bar">
+                    <div class="left">
+                        <div class="icon icon28 scale1d05 icon-highlight icon-blue"></div>
+                        <div class="title">Highlight</div>
+                    </div>
+
+                </div>
+                <div class="content list-card">
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-live.png" />
+                        <div class="description">
+                            <div class="logo-team">
+                                <img src="./assets/images/logoVillarreal.png" />
+                                <p class="number">2 - 2</p>
+                                <img src="./assets/images/logoRealMadrid.png" />
+                            </div>
+                            <div class="name-team">
+                                <p>Villarreal</p>
+                                <p>Real Madrid</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-live.png" />
+                        <div class="description">
+                            <div class="logo-team">
+                                <img src="./assets/images/logoVillarreal.png" />
+                                <p class="number">2 - 2</p>
+                                <img src="./assets/images/logoRealMadrid.png" />
+                            </div>
+                            <div class="name-team">
+                                <p>Villarreal</p>
+                                <p>Real Madrid</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-live.png" />
+                        <div class="description">
+                            <div class="logo-team">
+                                <img src="./assets/images/logoVillarreal.png" />
+                                <p class="number">2 - 2</p>
+                                <img src="./assets/images/logoRealMadrid.png" />
+                            </div>
+                            <div class="name-team">
+                                <p>Villarreal</p>
+                                <p>Real Madrid</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-live.png" />
+                        <div class="description">
+                            <div class="logo-team">
+                                <img src="./assets/images/logoVillarreal.png" />
+                                <p class="number">2 - 2</p>
+                                <img src="./assets/images/logoRealMadrid.png" />
+                            </div>
+                            <div class="name-team">
+                                <p>Villarreal</p>
+                                <p>Real Madrid</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-more">Show more</div>
+            </div>
+        </div>
+
+        <!-- Predict section -->
+        <div class="predict">
+            <div class="container section-focus">
+                <div class="head-bar">
+                    <div class="left">
+                        <div class="icon icon28 scale1d05 icon-predict icon-blue"></div>
+                        <div class="title">Predict</div>
+                    </div>
+                </div>
+                <div class="content list-card">
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-predict.png" />
+                        <div class="description">
+                            <p class="short-info"><span class="text-highlight">Predict the score</span> of Stuttgart vs
+                                Bochum</p>
+                            <div class="detail-time d-flex align-items-center">
+                                <img src="./assets/icons/icon-date.svg" alt="">
+                                <span>19:30 on September 1, 2019</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-predict.png" />
+                        <div class="description">
+                            <p class="short-info"><span class="text-highlight">Predict the score</span> of Stuttgart vs
+                                Bochum</p>
+                            <div class="detail-time d-flex align-items-center">
+                                <img src="./assets/icons/icon-date.svg" alt="">
+                                <span>19:30 on September 1, 2019</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-predict.png" />
+                        <div class="description">
+                            <p class="short-info"><span class="text-highlight">Predict the score</span> of Stuttgart vs
+                                Bochum</p>
+                            <div class="detail-time d-flex align-items-center">
+                                <img src="./assets/icons/icon-date.svg" alt="">
+                                <span>19:30 on September 1, 2019</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-predict.png" />
+                        <div class="description">
+                            <p class="short-info"><span class="text-highlight">Predict the score</span> of Stuttgart vs
+                                Bochum</p>
+                            <div class="detail-time d-flex align-items-center">
+                                <img src="./assets/icons/icon-date.svg" alt="">
+                                <span>19:30 on September 1, 2019</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-more">
+                    Show more
+                </div>
+            </div>
+        </div>
+
+        <!-- News section -->
+        <div class="news">
+            <div class="container section-focus">
+                <div class="head-bar">
+                    <div class="left">
+                        <div class="icon icon28 scale1d05 icon-news icon-blue"></div>
+                        <div class="title">News</div>
+                    </div>
+                </div>
+                <div class="content list-card">
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-news.png" />
+                        <div class="description">
+                            <p class="title text-2-line">
+                                Indonesia vs Malaysia match, 19:30 on September 5
+                            </p>
+                            <p class="expand-des text-3-line">
+                                A gentle victory with a total score of 12-2 after two matches helped the Malaysian
+                                football team easily overcome Timor...
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-news.png" />
+                        <div class="description">
+                            <p class="title text-2-line">
+                                Indonesia vs Malaysia match, 19:30 on September 5
+                            </p>
+                            <p class="expand-des text-3-line">
+                                A gentle victory with a total score of 12-2 after two matches helped the Malaysian
+                                football team easily overcome Timor...
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-news.png" />
+                        <div class="description">
+                            <p class="title text-2-line">
+                                Indonesia vs Malaysia match, 19:30 on September 5
+                            </p>
+                            <p class="expand-des text-3-line">
+                                A gentle victory with a total score of 12-2 after two matches helped the Malaysian
+                                football team easily overcome Timor...
+                            </p>
+                        </div>
+                    </div>
+                    <div class="card-item">
+                        <img class="thumb" src="./assets/images/thumb-news.png" />
+                        <div class="description">
+                            <p class="title text-2-line">
+                                Indonesia vs Malaysia match, 19:30 on September 5
+                            </p>
+                            <p class="expand-des text-3-line">
+                                A gentle victory with a total score of 12-2 after two matches helped the Malaysian
+                                football team easily overcome Timor...
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="show-more">
+                    Show more
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- menu bottom in mobile -->
+    <div class="menu-bottom">
+        <ul>
+            <li class="active">
+                <div class="icon icon24 icon-calendar icon-white"></div>
+                Fixtures
+            </li>
+            <li>
+                <div class="icon icon24 icon-live-tv icon-white"></div>
+                LiveTV
+            </li>
+            <li>
+                <div class="icon icon24 icon-predict icon-white"></div>
+                Predict
+            </li>
+            <li>
+                <div class="icon icon24 icon-tag icon-white"></div>
+                Pricing
+            </li>
+            <li class="d-none d-md-flex">
+                <div class="icon icon24 icon-highlight icon-white"></div>
+                Highlight
+            </li>
+            <li class="d-none d-md-flex">
+                <div class="icon icon24 icon-news icon-white"></div>
+                News
+            </li>
+            <li class="d-md-none d-flex menu__button">
+                <div class="icon icon24 icon-menu icon-white"></div>
+                Menu
+            </li>
+        </ul>
+        <section class="menu__body" hidden>
+            <div class="item-menu-extend active">
+                <div class="icon icon24 icon-login icon-white"></div>
+                Log in
+            </div>
+            <div class="item-menu-extend">
+                <div class="icon icon24 icon-highlight icon-white"></div>
+                Highlight
+            </div>
+            <div class="item-menu-extend">
+                <div class="icon icon24 icon-signup icon-white"></div>
+                Sign up
+            </div>
+            <div class="item-menu-extend">
+                <div class="icon icon24 icon-logout icon-white"></div>
+                Log out
+            </div>
+            <div class="item-menu-extend">
+                <div class="icon icon24 icon-news icon-white"></div>
+                News
+            </div>
+        </section>
+    </div>
+
+    <!-- footer -->
+    <div class="footer footer--home">
+        <div class="container">
+            <div class="left">
+                <img src="./assets/icons/logo.svg" />
+                <span>@2022 aesportTV Inc,</span>
+            </div>
+
+            <div class="center">
+                <a href="#">Terms</a>
+                <a href="#">Primacy</a>
+                <a href="#">Cookie policy</a>
+            </div>
+            <div class="right">
+                <a href="#"><img src="./assets/icons/logo-fb.svg" /></a>
+                <a href="#"><img src="./assets/icons/logo-twitter.svg" /></a>
+                <a href="#"><img src="./assets/icons/logo-youtube.svg" /></a>
+            </div>
+        </div>
+    </div>
+    <script src="./js/app.js"></script>
+    <script src="./js/select.js"></script>
+    <script>
+        var buttonMenuMobile = document.querySelector('.menu__button');
+        var menuMobile = document.querySelector('.menu__body');
+        var open = false;
+
+        function showMenu() {
+            buttonMenuMobile.setAttribute('hidden', '');
+            menuMobile.removeAttribute('hidden');
+        };
+
+        function hideMenu() {
+            menuMobile.setAttribute('hidden', '');
+            buttonMenuMobile.removeAttribute('hidden');
+        };
+
+        buttonMenuMobile.addEventListener('click', function () {
+            if (open) {
+                hideMenu();
+            } else {
+                showMenu();
+            }
+            open = !open;
+        });
+    </script>
+</body>
+
+</html>

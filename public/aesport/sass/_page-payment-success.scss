@@ -1,0 +1,73 @@
+.payment-success-page {
+    p {
+        margin-bottom: 0;
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .logo {
+        margin-top: 72px;
+    }
+    .success-title {
+        margin-top: 16px;
+        font-size: 24px;
+        color: white;
+    }
+    .message-thank {
+        margin-top: 8px;
+        color: #668d9e;
+        font-size: 14px;
+        padding: 0 40px;
+        text-align: center;
+    }
+    .gr-btn-action {
+        margin-top: 24px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        .btn {
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .payment-success-page {
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .logo {
+            margin-top: 80px;
+        }
+        .success-title {
+            margin-top: 24px;
+            font-weight: 700;
+            font-size: 32px;
+            color: white;
+        }
+        .message-thank {
+            margin-top: 8px;
+            font-size: 16px;
+        }
+        .gr-btn-action {
+            margin-top: 27px;
+            display: flex;
+            align-items: center;
+            flex-direction: row;
+            gap: 9px;
+            width: auto;
+            .btn {
+                width: auto;
+            }
+        }
+    }
+}

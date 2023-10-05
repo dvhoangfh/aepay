@@ -1,0 +1,62 @@
+@import "_global";
+@import "icon";
+@import "_header";
+@import "menu-bottom";
+@import "select_custom";
+@import "button";
+@import "fixture";
+@import "home";
+@import "footer";
+@import "page_live_tv";
+@import "page-payment-success";
+@import "page-pricing";
+@import "page_login";
+@import "news";
+@import "pagination";
+@import "predict_layout";
+@import "highlight_layout";
+@import "page-highlight-detail";
+@import "page-news-detail";
+@import "select_live";
+@import "flat-picker";
+@import "scrollbar";
+
+p {
+    margin-bottom: 0;
+}
+
+.text-668D9E {
+    color: #668d9e;
+}
+
+.text-14px {
+    font-weight: 400;
+    font-size: 14px;
+}
+
+.font-500 {
+    font-weight: 400;
+}
+
+.font-500 {
+    font-weight: 500;
+}
+
+.font-600 {
+    font-weight: 600;
+}
+
+.font-700 {
+    font-weight: 700;
+}
+
+// .select2.select2-container .select2-selection {
+//     border: 1px solid #ccc;
+//     -webkit-border-radius: 3px;
+//     -moz-border-radius: 3px;
+//     border-radius: 3px;
+//     height: 34px;
+//     margin-bottom: 15px;
+//     outline: none !important;
+//     transition: all 0.15s ease-in-out;
+// }

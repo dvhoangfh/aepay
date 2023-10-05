@@ -1,0 +1,120 @@
+.menu-bottom {
+    background-color: var(--darkV2);
+    height: 48px;
+    position: fixed;
+    display: block;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+
+    .icon.icon24 {
+        transform: scale(0.8);
+    }
+
+    ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        list-style-type: none;
+        margin-bottom: 0;
+        height: 100%;
+        padding-left: 0;
+
+        li {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 1px;
+            align-items: center;
+            color: white;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 17px;
+            cursor: pointer;
+            transition: all 0.3s ease-in;
+
+            &:hover {
+                color: var(--blue-light);
+            }
+
+            &:hover div.icon {
+                background-color: var(--blue-light);
+            }
+            &.active {
+                color: var(--blue-light);
+                div.icon {
+                    background-color: var(--blue-light);
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .menu-bottom {
+        display: block;
+        height: 79px;
+        .icon.icon24 {
+            transform: scale(1);
+        }
+    }
+
+    .menu-bottom ul li {
+        gap: 5px;
+        font-size: 16px;
+        line-height: 19px;
+    }
+}
+
+@media (min-width: 992px) {
+    .menu-bottom {
+        display: none;
+    }
+}
+
+.menu__body {
+    --x: 0;
+    --y: 0;
+    --z: 0;
+    background: #252745;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    width: 100%;
+    box-shadow: 0px -9px 50px -30px black;
+    position: absolute;
+    bottom: 48px;
+    z-index: 105;
+    color: #ffffff;
+    transform: translate3d(var(--x), var(--y), var(--z));
+    transition: 0.2s cubic-bezier(0.33, 1, 0.53, 1);
+
+    .item-menu-extend {
+        padding: 8px 24px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease-in-out;
+        font-weight: 300;
+        font-size: 14px;
+        &:hover {
+            color: var(--blue-light);
+        }
+
+        &:hover div.icon {
+            background-color: var(--blue-light);
+        }
+        
+        &.active {
+            color: var(--blue-light);
+            div.icon {
+                background-color: var(--blue-light);
+            }
+        }
+    }
+}
+
+.menu__body[hidden] {
+    --y: 200%;
+}

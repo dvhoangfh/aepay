@@ -1,0 +1,35 @@
+@import "./variables";
+@import "./mixins";
+@import "./common";
+@import "./global";
+
+.news-page {
+    .news {
+        background-color: $darkV2;
+        padding: 36px 0 32px;
+
+        .card-item .description {
+            .title {
+                @include fontSize(16);
+                color: white;
+            }
+            .expand-des {
+                margin-top: 8px;
+                font-weight: 400;
+                font-size: 13px;
+                color: white;
+                opacity: 0.6;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .news-page {
+        .news {
+            .list-card {
+                row-gap: 30px;
+            }
+        }
+    }
+}

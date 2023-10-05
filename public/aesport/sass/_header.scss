@@ -1,0 +1,111 @@
+.menu-bar {
+    height: 60px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: var(--darkV2);
+    z-index: 10;
+
+    a {
+        text-decoration: none;
+    }
+
+    .container {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    img {
+        width: 116px;
+        cursor: pointer;
+    }
+
+    ul {
+        align-items: center;
+        list-style-type: none;
+        gap: 40px;
+        margin-bottom: 0;
+        display: none;
+
+        li {
+            color: white;
+            font-weight: 500;
+            font-size: 16px;
+            line-height: 19px;
+            cursor: pointer;
+            transition: all 0.3s ease-in;
+
+            &:not(.signin-section):hover {
+                color: var(--blue-light);
+            }
+
+            .active {
+                color: var(--blue-light);
+            }
+
+            &.signin-section {
+                display: flex;
+                gap: 12px;
+                align-items: center;
+                white-space: nowrap;
+            }
+
+            .btn-signin, .btn-trial {
+                font-weight: 600;
+                font-size: 16px;
+                text-transform: uppercase;
+                padding: 6px 16px;
+                border-radius: 20px;
+                transition: all 0.3s ease-in;
+            }
+
+            .btn-signin {
+                color: white;
+                border: 1px solid #FFFFFF;
+
+                &:hover {
+                    border-color: var(--blue-light);
+                    color: var(--blue-light);
+                }
+            }
+
+            .btn-trial {
+                color: var(--gray);
+                background-color: var(--blue-light);
+                border: 1px solid transparent;
+
+                &:hover {
+                    background-color: transparent;
+                    border-color: var(--blue-light);
+                    color: var(--blue-light);
+                    border: 1px solid var(--blue-light);
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .menu-bar img {
+        width: 174px;
+        cursor: pointer;
+    }
+}
+
+@media (min-width: 992px) {
+    .menu-bar ul {
+        display: flex;
+    }
+
+    .menu-bar img {
+        width: 116px;
+        cursor: pointer;
+    }
+
+    .menu-bar .container {
+        justify-content: space-between;
+    }
+}

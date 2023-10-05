@@ -1,0 +1,29 @@
+.btn {
+    padding: 10px 40px;
+    border-radius: 35px;
+    border: 1px solid transparent;
+    &:focus-visible {
+        outline: white auto 1px;
+    }
+    &-blue {
+        background: #00efff;
+        color: black;
+        &:hover,
+        &:active,
+        &:focus {
+            color: #00c2d0;
+            border-color: #00c2d0;
+            background-color: transparent;
+        }
+    }
+    &-red {
+        background: #ef174b;
+        color: white;
+        &:hover,
+        &:active,
+        &:focus {
+            background: #c90f3c;
+            color: white;
+        }
+    }
+}

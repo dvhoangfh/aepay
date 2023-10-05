@@ -1,0 +1,24 @@
+$dark: #191c2f;
+$darkV2: #1e2039;
+$darkV3: #272a47;
+$darkV4: #161929;
+$darkV5: #1C2536;
+$grey: #828282;
+$greyV2: #354156;
+$greyV3: #8e8e8e;
+$gray: #202020;
+$grayV2: #242F45;
+$blue-light: #00efff;
+$color-bg: #10172b;
+$green: #00ea17;
+$red: #EF174B;
+$red-dark: #C90F3C;
+
+@for $i from 1 through 5 {
+    .text-#{$i}-line {
+        display: -webkit-box;
+        -webkit-line-clamp: $i;
+        -webkit-box-orient: vertical;  
+        overflow: hidden;
+    }
+}

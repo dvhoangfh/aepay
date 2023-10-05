@@ -1,0 +1,60 @@
+<?php
+
+namespace Dvhoangfh\Aepay\Http\Controllers;
+
+use Dvhoangfh\Aepay\Models\Customer;
+use Dvhoangfh\Aepay\Models\Package;
+use Dvhoangfh\Aepay\Models\Payment;
+use Dvhoangfh\Aepay\Models\Voucher;
+use Dvhoangfh\Aepay\Services\PackageService;
+use Dvhoangfh\Aepay\Services\SettingService;
+use Dvhoangfh\Aepay\Services\Signature;
+use Illuminate\Http\Request;
+use Illuminate\Routing\Controller;
+
+class IframeController extends Controller
+{
+    public function index(Request $request)
+    {
+        $signatureService = app()->make(Signature::class);
+        $userId = $request->get('user_id');
+        $paymentId = $request->get('payment_id');
+        $site = $request->get('site');
+        $signature = $this->getSignature($request);
+        if (!$signatureService->verifySignature($request->query(), $signature, 'iframe')) {
+            return view('aepay::wrong-signature');
+        }
+        $user = Customer::where('id', $userId)->select('id', 'email')->first();
+        $paypal = Payment::find($paymentId);
+        $packages = Package::where('status', Package::STATUS_ACTIVE)->select(['id', 'name', 'amount', 'is_recommend', 'paddle_id', 'trial_days', 'billing_period', 'billing_type', 'paypal_plan_id', 'package_hash_id'])->get();
+        foreach ($packages as &$package) {
+            $package->day_value = PackageService::getDay($package->package_hash_id);
+            $package->per_day = PackageService::getPerValue($package->amount * $package->billing_period, $package->package_hash_id);
+            $package->save_value = PackageService::getSave($package->package_hash_id);
+        }
+        $vouchers = Voucher::where('is_active', 1)->get();
+        $enableCC = app(SettingService::class)->get('enable_cc', 'on');
+        $urlRedirect = $request->get('url_redirect');
+        
+        return view('aepay::iframe', [
+            'packages'     => $packages,
+            'user_id'      => $userId,
+            'client_id'    => $request->get('client_id'),
+            'user'         => $user,
+            'plans'        => $paypal->plans,
+            'paymentId'    => $paymentId,
+            'vouchers'     => $vouchers,
+            'site'         => $site ?? 'aesport',
+            'is_enable_cc' => $enableCC === 'on',
+            'url_redirect' => $urlRedirect,
+        ]);
+    }
+    
+    public function getSignature(Request $request): string
+    {
+        $params = $request->all();
+        $signature = $params[Signature::PARAMETER_SIGNATURE] ?? '';
+        
+        return (string)$signature;
+    }
+}

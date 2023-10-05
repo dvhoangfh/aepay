@@ -1,0 +1,293 @@
+@import "./mixins";
+@import "../css/bootstrap/bootstrap.min.css";
+@import "../css/bootstrap/bootstrap-utilities.min.css";
+
+.live-tv-page {
+    .video-channel {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+
+        .channel {
+            width: 100%;
+            background: #1e2039;
+            border-radius: 5px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+
+            .head {
+                font-size: 20px;
+                background: #272a47;
+                padding: 12px 14px;
+                color: #10d1ff;
+                font-weight: 400;
+            }
+            .list-channel {
+                overflow-y: auto;
+                height: 501px;
+                display: grid;
+                gap: 0;
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+                &::-webkit-scrollbar-track {
+                    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                    border-radius: 10px;
+                    background-color: #10111d;
+                }
+                &::-webkit-scrollbar {
+                    width: 6px;
+                    background-color: transparent;
+                }
+
+                .channel-item {
+                    background: transparent;
+                    border-radius: unset;
+                    cursor: pointer;
+                    padding: 10px 16px;
+                    display: flex;
+                    align-items: center;
+                    gap: 24px;
+                    border-bottom: 1px solid #354156;
+                    .thumb {
+                        width: 28px;
+                        height: 28px;
+                        border-radius: 4px;
+                        overflow: hidden;
+                        background-color: white;
+                        img {
+                            object-fit: cover;
+                        }
+                    }
+                    .name {
+                        color: white;
+                        @include fontSize(16);
+                        font-weight: 400;
+                    }
+                    &.active {
+                        .name {
+                            color: #00efff;
+                        }
+                    }
+                }
+            }
+        }
+
+        .video-section {
+            flex: 1;
+            border-radius: 5px;
+            display: flex;
+            flex-direction: column;
+            background: #272a47;
+            overflow: hidden;
+            position: relative;
+
+            .info-view {
+                position: absolute;
+                top: 15px;
+                left: 20px;
+                @include flexCenter();
+                color: white;
+                font-size: 13px;
+                gap: 13px;
+            }
+
+            .video-display {
+                flex: 1;
+                min-height: 222px;
+                width: 100%;
+                background-color: grey;
+            }
+
+            .info-section {
+                padding: 16px 24px;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+            }
+            .info-item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                gap: 10px;
+                .left {
+                    flex: 1;
+                    .type-acc {
+                        font-weight: 500;
+                        font-size: 16px;
+                        text-transform: uppercase;
+                        color: white;
+                        display: flex;
+                        align-items: center;
+                        gap: 6px;
+                        .quality {
+                            display: flex;
+                            align-items: center;
+                            gap: 4px;
+                            .badge {
+                                background: #00efff;
+                                border-radius: 3px;
+                                text-transform: unset;
+                                color: #272a47;
+                                font-size: 8px;
+                            }
+                        }
+                    }
+
+                    .des {
+                        font-weight: 400;
+                        font-size: 10px;
+                        color: #779c9c;
+                    }
+                }
+                .right {
+                    display: flex;
+                    justify-content: flex-end;
+                    flex-wrap: wrap;
+                    gap: 15px;
+
+                    .link-channel {
+                        white-space: nowrap;
+                        cursor: pointer;
+                        border: 1px solid #00efff;
+                        border-radius: 20px;
+                        color: #00efff;
+                        padding: 0 18px;
+                        transition: all 0.3s ease-in;
+                        font-size: 13px;
+                        height: 30px;
+                        @include flexCenter();
+                        &:hover,
+                        &.active {
+                            background: #00efff;
+                            border: 1px solid #00efff;
+                            color: #1e2039;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .live-tv {
+        margin-top: 30px;
+        .content {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+            .tv-item {
+                background-color: white;
+                cursor: pointer;
+                padding: 24px 40px;
+                border-radius: 8px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                position: relative;
+                &.active::after {
+                    content: "";
+                    position: absolute;
+                    width: 8px;
+                    height: 8px;
+                    border-radius: 50%;
+                    top: 10px;
+                    right: 10px;
+                    background-color: $green;
+                }
+                img {
+                    width: 68px;
+                }
+            }
+        }
+    }
+    .footer {
+        display: block;
+    }
+}
+
+@media (min-width: 768px) {
+    .live-tv-page {
+        .container {
+            padding-top: 21px;
+            .live-tv {
+                .content {
+                    grid-template-columns: repeat(6, minmax(0, 1fr));
+                }
+            }
+        }
+
+        .video-channel {
+            flex-direction: column;
+            .channel {
+                width: 100%;
+                .head {
+                    background: transparent;
+                }
+                .list-channel {
+                    display: grid;
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                    grid-template-rows: auto;
+                    height: max-content;
+                    gap: 12px;
+                    .channel-item {
+                        height: max-content;
+                        background: #354156;
+                        border-radius: 4px;
+                        border: 1px solid transparent;
+                        &:hover,
+                        &.active {
+                            border: 1px solid #00efff;
+                        }
+                    }
+                }
+            }
+            .video-section {
+                .video-display {
+                    min-height: 465px;
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .live-tv-page {
+        .container {
+            padding-top: 21px;
+            .live-tv {
+                display: block;
+                margin-top: 80px;
+                .content .tv-item {
+                    width: unset;
+                }
+            }
+        }
+
+        .video-channel {
+            flex-direction: row;
+            .channel {
+                width: 276px;
+                .head {
+                    font-size: 16px;
+                    background: #272a47;
+                }
+                .list-channel {
+                    grid-template-columns: repeat(1, minmax(0, 1fr));
+                    height: 534px;
+                    gap: 0;
+
+                    .channel-item {
+                        background: transparent;
+                        .name {
+                            font-size: 14px;
+                        }
+                    }
+                }
+            }
+            .video-section {
+                .video-display {
+                    min-height: 465px;
+                }
+            }
+        }
+    }
+}

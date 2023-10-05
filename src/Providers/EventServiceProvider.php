@@ -1,0 +1,37 @@
+<?php
+
+namespace Dvhoangfh\Aepay\Providers;
+
+use Dvhoangfh\Aepay\Events\BytePayOrderCreated;
+use Dvhoangfh\Aepay\Events\PaypalSubscriptionActive;
+use Dvhoangfh\Aepay\Events\PaypalSubscriptionRenew;
+use Dvhoangfh\Aepay\Listeners\SendEmailSubscriptionActive;
+use Dvhoangfh\Aepay\Listeners\SendEmailSubscriptionRenew;
+use Dvhoangfh\Aepay\Listeners\SendTelegramOrderCreated;
+use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+
+
+class EventServiceProvider extends ServiceProvider
+{
+    protected $listen = [
+        PaypalSubscriptionActive::class => [
+            SendEmailSubscriptionActive::class
+        ],
+        PaypalSubscriptionRenew::class  => [
+            SendEmailSubscriptionRenew::class
+        ],
+        BytePayOrderCreated::class      => [
+            SendTelegramOrderCreated::class
+        ]
+    ];
+    
+    /**
+     * Register any events for your application.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        parent::boot();
+    }
+}

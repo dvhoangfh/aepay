@@ -1,0 +1,192 @@
+.page-news-detail {
+    
+    .container {
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+    .wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+        justify-content: space-between;
+        .detail {
+            background: #272A47;
+            padding: 12px;
+            border-radius: 8px;
+
+            .title {
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 21px;
+                color: #ffffff;
+                margin-bottom: 12px;
+            }
+            .time {
+                margin-top: 12px;
+                color: #ffffff;
+                opacity: 0.5;
+                font-size: 13px;
+            }
+            .content-news {
+                margin-top: 12px;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 18px;
+                color: #ffffff;
+            }
+        }
+        .section-focus {
+            .list-card {
+                grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+                .card-item {
+                    @include shadowNormal();
+                    box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+                    cursor: pointer;
+                    display: flex;
+                    flex-direction: row;
+                    border-radius: 8px;
+                    background-color: $darkV3;
+                    overflow: hidden;
+                    position: relative;
+                    &:hover {
+                        background: #354156;
+                    }
+                    .thumb {
+                        width: 161px;
+                        height: 100%;
+                        border-top-right-radius: 8px;
+                        object-fit: cover;
+                    }
+                    .description {
+                        flex: 1;
+                        padding: 16px;
+                        .title {
+                            font-weight: 600;
+                            font-size: 15px;
+                            color: white;
+                        }
+                        .expand-des {
+                            margin-top: 10px;
+                            font-weight: 400;
+                            font-size: 13px;
+                            color: white;
+                            opacity: 0.6;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .page-news-detail {
+        padding-bottom: 0;
+        .container {
+            margin-top: 30px;
+            margin-bottom: 30px;
+        }
+
+        .wrap {
+            .detail {
+                padding: 24px 43px;
+                .title {
+                    font-size: 24px;
+                }
+            }
+            .section-focus {
+                .list-card {
+                    grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+                    .card-item {
+                        @include shadowNormal();
+                        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+                        cursor: pointer;
+                        display: flex;
+                        flex-direction: column;
+                        border-radius: 8px;
+                        background-color: $darkV3;
+                        overflow: hidden;
+                        position: relative;
+                        &:hover {
+                            background: #354156;
+                        }
+                        .thumb {
+                            width: 100%;
+                            height: 170px;
+                        }
+                        .description {
+                            flex: 1;
+                            padding: 16px;
+                            .title {
+                                font-weight: 600;
+                                font-size: 13px;
+                                color: white;
+                            }
+                            .expand-des {
+                                margin-top: 10px;
+                                font-weight: 400;
+                                font-size: 13px;
+                                color: white;
+                                opacity: 0.6;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (min-width: 992px) {
+    .page-news-detail {
+        .wrap {
+            flex-direction: row;
+
+            .detail {
+                padding: 15px;
+                .title {
+                }
+            }
+            .section-focus {
+                .list-card {
+                    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+                    .card-item {
+                        @include shadowNormal();
+                        box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+                        cursor: pointer;
+                        display: flex;
+                        flex-direction: row;
+                        border-radius: 8px;
+                        background-color: $darkV3;
+                        overflow: hidden;
+                        position: relative;
+                        &:hover {
+                            background: #354156;
+                        }
+                        .thumb {
+                            width: 161px;
+                            height: 100%;
+                            border-top-right-radius: 8px;
+                            object-fit: cover;
+                        }
+                        .description {
+                            flex: 1;
+                            padding: 16px;
+                            .title {
+                                font-weight: 600;
+                                font-size: 13px;
+                                color: white;
+                            }
+                            .expand-des {
+                                margin-top: 10px;
+                                font-weight: 400;
+                                font-size: 13px;
+                                color: white;
+                                opacity: 0.6;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
