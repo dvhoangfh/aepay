@@ -2,7 +2,6 @@
 
 use Dvhoangfh\Aepay\Http\Controllers\IframeController;
 use Dvhoangfh\Aepay\Http\Controllers\WebhookPayPalController;
-use Dvhoangfh\Aepay\Http\Controllers\WebhookController;
 use Dvhoangfh\Aepay\Http\Controllers\WebhookBytePayController;
 use Dvhoangfh\Aepay\Http\Controllers\PackageController;
 use Dvhoangfh\Aepay\Http\Controllers\WebhookSellixController;
@@ -13,6 +12,8 @@ Route::get('/package-iframe', [IframeController::class, 'index'])->name('iframe'
 Route::post('/paypal/webhook', WebhookPayPalController::class)->name('paypal.webhook');
 Route::post('/bytepay/webhook', WebhookBytePayController::class)->name('bytepay.webhook');
 Route::post('/sellix/webhook', WebhookSellixController::class)->name('sellix.webhook');
+
+Route::get('/thank', [PackageController::class, 'thank'])->name('thank');
 
 
 Route::post('/api/paylink', [PackageController::class, 'getPayLink'])->name('package.paylink');
