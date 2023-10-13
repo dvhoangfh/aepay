@@ -11,7 +11,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/package-iframe', [IframeController::class, 'index'])->name('iframe');
 
 Route::post('/paypal/webhook', WebhookPayPalController::class)->name('paypal.webhook');
-Route::post('/paddle/webhook', WebhookController::class)->name('cashier.webhook');
 Route::post('/bytepay/webhook', WebhookBytePayController::class)->name('bytepay.webhook');
 Route::post('/sellix/webhook', WebhookSellixController::class)->name('sellix.webhook');
 
