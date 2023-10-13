@@ -19,7 +19,8 @@
         "php": "^7.4|^8.0",
         "illuminate/support": "^8.0",
         "irazasyed/telegram-bot-sdk": "^3.7",
-        "mautic/api-library": "^3.1"
+        "mautic/api-library": "^3.1",
+        "sellix/php-sdk": "^1.0"
     },
     "require-dev": {
         "orchestra/testbench": "^6.0",

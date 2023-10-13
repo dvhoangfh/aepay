@@ -2,7 +2,9 @@
 
 namespace Dvhoangfh\Aepay;
 
+use Dvhoangfh\Aepay\Middleware\VerifyCsrfToken;
 use Dvhoangfh\Aepay\Providers\EventServiceProvider;
+use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
 class AepayServiceProvider extends ServiceProvider
@@ -10,7 +12,7 @@ class AepayServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application services.
      */
-    public function boot()
+    public function boot(Router $router)
     {
         /*
          * Optional methods to load your package assets
@@ -19,7 +21,10 @@ class AepayServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'aepay');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutesFrom(__DIR__ . './../routes/web.php');
-        
+    
+        $router->middlewareGroup('web', [
+            VerifyCsrfToken::class
+        ]);
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../config/config.php' => config_path('aepay.php'),

@@ -31,7 +31,9 @@ class PaypalSubscription extends Model
         'next_billing_at',
         'price',
         'is_send_mail_3d',
-        'is_one_time'
+        'is_one_time',
+        'site',
+        'is_send_telegram'
     ];
     
     public const SUBSCRIPTION_CREATED = 'BILLING.SUBSCRIPTION.CREATED';

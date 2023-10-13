@@ -37,8 +37,10 @@
     var PaymentId = '@json($paymentId)';
     var Vouchers = '@json($vouchers)';
     var Site = '@json($site)';
-    var IsEnableCC = '@json($is_enable_cc)';
     var UrlRedirect = '@json($url_redirect)';
+    var IsEnablePaypal = '@json($is_enable_paypal)';
+    var IsEnableBytePay = '@json($is_enable_bytepay)';
+    var IsEnableSellix = '@json($is_enable_sellix)';
 
     function sendEventToParent(event, data) {
         parent.postMessage(JSON.stringify({

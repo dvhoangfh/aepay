@@ -6,6 +6,7 @@ use Dvhoangfh\Aepay\Models\BytePayOrder;
 use Dvhoangfh\Aepay\Models\Customer;
 use Dvhoangfh\Aepay\Models\Package;
 use Dvhoangfh\Aepay\Models\PaypalSubscription;
+use Dvhoangfh\Aepay\Models\SellixSubscription;
 use Dvhoangfh\Aepay\Models\Subscription;
 use Dvhoangfh\Aepay\Models\Voucher;
 use Dvhoangfh\Aepay\Services\BytePayService;
@@ -21,6 +22,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use Sellix\PhpSdk\Sellix;
+use Sellix\PhpSdk\SellixException;
 
 class PackageController extends Controller
 {
@@ -229,6 +232,68 @@ class PackageController extends Controller
                 }
             } catch (Exception $exception) {
                 Log::error('Get pay link error----' . $exception->getMessage());
+                return $this->sendError('Something went wrong. Please ');
+            }
+        }
+        
+        return $this->sendResponse('Success', ['url' => $payLink]);
+    }
+    
+    public function createSubscriptionSellix(Request $request): JsonResponse
+    {
+        $client = new Sellix("Q314XfKPgQNg663zLkB3c1oCSuYgTuDNEEtyvXkc3nDP8a4J54LvrfreO60uxnZa", "aistock");
+        $packageId = $request->get('package_id');
+        $userId = $request->get('user_id');
+        if (empty($packageId) || empty($userId)) {
+            return $this->sendError('Missing package or user not found');
+        }
+        $package = Package::find($packageId);
+        $payLink = '';
+        $customer = Customer::find($userId);
+        $sellixCustomerId = $customer->sellix_id;
+        if (!$sellixCustomerId) {
+            $customer_payload = [
+                "email"   => $customer->email,
+                "name"    => $customer->name,
+                "surname" => $customer->name,
+            ];
+            try {
+                $customerId = $client->create_customer($customer_payload);
+                $customer->sellix_id = $customerId;
+                $customer->save();
+                $sellixCustomerId = $customerId;
+            } catch (SellixException $e) {
+                Log::error('Create sellix customer error ----' . $e->getMessage());
+            }
+        }
+        if ($package) {
+            $subscriptionPayload = [
+                "product_id"    => "650b03c42e00e",
+                "coupon_code"   => null,
+                "custom_fields" => [
+                    "customer_id" => $customer->id
+                ],
+                "customer_id"   => $sellixCustomerId,
+                "gateway"       => null
+            ];
+            
+            try {
+                $response = $client->create_subscription($subscriptionPayload);
+                if (!empty($response->uniqid)) {
+                    SellixSubscription::create([
+                        'subscription_id' => $response->uniqid,
+                        'package_id'      => $package->id,
+                        'customer_id'     => $customer->id,
+                        'hash_id'         => $package->package_hash_id,
+                        'status'          => 'CREATED',
+                    ]);
+                }
+                
+                if (!empty($response->url)) {
+                    return $this->sendResponse('Success', ['url' => $response->url]);
+                }
+            } catch (Exception $exception) {
+                Log::error('Get pay link sellix error----' . $exception->getMessage());
                 return $this->sendError('Something went wrong. Please ');
             }
         }

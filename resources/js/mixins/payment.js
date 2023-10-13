@@ -29,8 +29,10 @@ export default {
             voucher_success: '',
             voucher_error: '',
             paypal_unavailable: false,
-            is_enable_cc: false,
             url_redirect: '',
+            is_enable_paypal: false,
+            is_enable_bytepay: false,
+            is_enable_sellix: false,
         }
     },
     computed: {
@@ -49,8 +51,10 @@ export default {
         })
         this.payment_id = JSON.parse(PaymentId)
         this.vouchers = JSON.parse(Vouchers)
-        this.is_enable_cc = JSON.parse(IsEnableCC)
         this.url_redirect = JSON.parse(UrlRedirect)
+        this.is_enable_paypal = JSON.parse(IsEnablePaypal)
+        this.is_enable_bytepay = JSON.parse(IsEnableBytePay)
+        this.is_enable_sellix = JSON.parse(IsEnableSellix)
         window.addEventListener("message", this.choosePlan, false)
         try {
             await this.mountPaypalButton()
@@ -187,6 +191,17 @@ export default {
             let response = await api.getPayLinkBytePay(payload)
             if (response.data.url) {
                 sendEventToParent('url', { url: response.data.url})
+            }
+        },
+        async onCheckoutSellix() {
+            const payload = {
+                'package_id': this.package.id,
+                'user_id': this.user.id,
+                'url_redirect': this.url_redirect
+            }
+            let response = await api.createSellixSubscription(payload)
+            if (response.data.url) {
+                sendEventToParent('url', {url: response.data.url})
             }
         }
     }

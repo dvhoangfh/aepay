@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c6f6b6376400f690f435a6f053d12921",
+    "content-hash": "a6fc45a528acf656b480ac2a30680abb",
     "packages": [
         {
             "name": "brick/math",
@@ -2703,6 +2703,43 @@
                 }
             ],
             "time": "2021-09-25T23:10:38+00:00"
+        },
+        {
+            "name": "sellix/php-sdk",
+            "version": "v1.0.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Sellix/php-sdk.git",
+                "reference": "294f0f9b63e12bd6c9ef34735fe005b13784910b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Sellix/php-sdk/zipball/294f0f9b63e12bd6c9ef34735fe005b13784910b",
+                "reference": "294f0f9b63e12bd6c9ef34735fe005b13784910b",
+                "shasum": ""
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Sellix\\PhpSdk\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Daniele Servadei",
+                    "email": "daniele@sellix.io"
+                }
+            ],
+            "description": "Sellix PHP SDK",
+            "support": {
+                "issues": "https://github.com/Sellix/php-sdk/issues",
+                "source": "https://github.com/Sellix/php-sdk/tree/v1.0.17"
+            },
+            "time": "2023-05-25T17:59:09+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",

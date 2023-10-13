@@ -8,6 +8,7 @@ const urlPayLinkUid = '/api/paylink_uid'
 const urlCharge = '/api/charge'
 const urlHandleLog = '/api/handle_log'
 const urlPayLinkBytePay = '/api/paylink-bytepay'
+const urlCreateSubscriptionSellix = '/api/create-subscription-sellix'
 
 export default {
     getDetailMatch(matchId, payload) {
@@ -33,5 +34,8 @@ export default {
     },
     getPayLinkBytePay(payload) {
         return client.post(urlPayLinkBytePay, payload)
+    },
+    createSellixSubscription(payload) {
+        return client.post(urlCreateSubscriptionSellix, payload)
     },
 }

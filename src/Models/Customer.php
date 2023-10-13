@@ -6,8 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
-use App\Services\Auth\User as Authenticatable;
-use Laravel\Paddle\Billable as PaddleBillable;
+use Dvhoangfh\Aepay\Services\Auth\User as Authenticatable;
 
 /**
  * @property string $email
@@ -17,7 +16,6 @@ class Customer extends Authenticatable
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
-    use PaddleBillable;
     
     /**
      * The attributes that are mass assignable.
@@ -30,6 +28,7 @@ class Customer extends Authenticatable
         'email',
         'password',
         'status',
+        'sellix_id',
     ];
     
     protected $hidden = [

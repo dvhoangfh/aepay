@@ -35,7 +35,7 @@ class SendEmailSubscriptionActive
         $data = $payload->payload;
         $id = $data['resource']['id'];
         $subscription = PaypalSubscription::with(['customer', 'payment'])->where('subscription_id', $id)->first();
-        if ($subscription) {
+        if ($subscription && !$subscription->is_send_telegram) {
             switch ($subscription->hash_id) {
                 case '1m':
                     $package = '1 Month';
