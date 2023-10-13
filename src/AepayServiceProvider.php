@@ -21,6 +21,27 @@ class AepayServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'aepay');
         // $this->loadMigrationsFrom(__DIR__.'/../database/migrations');
         $this->loadRoutesFrom(__DIR__ . './../routes/web.php');
+        $this->app->make('config')->set('logging.channels.log-webhook-paypal', [
+            'driver'     => 'daily',
+            'path'       => storage_path('log-webhook/laravel.log'),
+            'level'      => 'info',
+            'days'       => 60,
+            'permission' => 0777,
+        ]);
+        $this->app->make('config')->set('logging.channels.log-webhook-bytepay', [
+            'driver'     => 'daily',
+            'path'       => storage_path('log-webhook-bytepay/laravel.log'),
+            'level'      => 'info',
+            'days'       => 60,
+            'permission' => 0777,
+        ]);
+        $this->app->make('config')->set('logging.channels.log-webhook-sellix', [
+            'driver'     => 'daily',
+            'path'       => storage_path('log-webhook-sellix/laravel.log'),
+            'level'      => 'info',
+            'days'       => 60,
+            'permission' => 0777,
+        ]);
     
         $router->middlewareGroup('web', [
             VerifyCsrfToken::class
@@ -58,6 +79,14 @@ class AepayServiceProvider extends ServiceProvider
         $this->app->register(EventServiceProvider::class);
         // Automatically apply the package configuration
         $this->mergeConfigFrom(__DIR__ . '/../config/config.php', 'aepay');
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/services.php',
+            'services'
+        );
+        $this->mergeConfigFrom(
+            __DIR__.'/../config/logging.php',
+            'logging'
+        );
         
         // Register the main class to use with the facade
         $this->app->singleton('aepay', function () {

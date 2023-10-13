@@ -55,7 +55,7 @@
 @if(app()->environment() !== 'local')
     <script src="{{ mix('/js/app.js', 'vendor/aepay') }}"></script>
 @else
-    <script src="{{ mix('/js/app_local.js', 'vendor/aepay') }}"></script>
+    <script src="{{ asset('vendor/aepay/js/app_local.js') }}"></script>
 @endif
 </body>
 </html>

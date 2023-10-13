@@ -64,9 +64,9 @@
               </svg>
             </div>
             <div v-if="is_enable_bytepay" class="cc-button-container" @click="onCheckoutCC">
-              <img src="../../../images/jcb@2x.png" alt="">
-              <img src="../../../images/mastercard@2x.png" alt="">
-              <img src="../../../images/visa@2x.png" alt="">
+              <img src="vendor/aepay/images/jcb@2x.png" alt="">
+              <img src="vendor/aepay/images/mastercard@2x.png" alt="">
+              <img src="vendor/aepay/images/visa@2x.png" alt="">
             </div>
             <div v-if="is_enable_paypal" style="margin-top: 20px">
               <div id="paypal-button-container"></div>
@@ -76,10 +76,10 @@
                 Secure by
               </div>
               <div class="certificate">
-                <img src="../../../images/certificate-logo-1.png" alt="">
-                <img src="../../../images/certificate-logo-2.png" alt="">
-                <img src="../../../images/certificate-logo-3.png" alt="">
-                <img src="../../../images/seal_image.png" alt="">
+                <img src="/vendor/aepay/images/certificate-logo-1.png" alt="">
+                <img src="vendor/aepay/images/certificate-logo-2.png" alt="">
+                <img src="vendor/aepay/images/certificate-logo-3.png" alt="">
+                <img src="vendor/aepay/images/seal_image.png" alt="">
               </div>
             </div>
           </template>

@@ -2,10 +2,10 @@
 
 namespace Dvhoangfh\Aepay\Http\Controllers;
 
+use Dvhoangfh\Aepay\Jobs\EditContactMautic;
 use Illuminate\Routing\Controller;
 use Dvhoangfh\Aepay\Events\PaypalSubscriptionActive;
 use Dvhoangfh\Aepay\Events\PaypalSubscriptionRenew;
-use App\Jobs\EditContactMautic;
 use Dvhoangfh\Aepay\Models\Customer;
 use Dvhoangfh\Aepay\Models\Payment;
 use Dvhoangfh\Aepay\Models\PaypalSubscription;

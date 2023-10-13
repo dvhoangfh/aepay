@@ -6,6 +6,10 @@
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" packagePrefix="Dvhoangfh\Aepay\" />
       <sourceFolder url="file://$MODULE_DIR$/tests" isTestSource="true" packagePrefix="Dvhoangfh\Aepay\Tests\" />
       <excludeFolder url="file://$MODULE_DIR$/vendor/sellix/php-sdk" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/symfony/intl" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/laravel/cashier-paddle" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/spatie/url" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/moneyphp/money" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
