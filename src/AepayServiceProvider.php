@@ -43,9 +43,6 @@ class AepayServiceProvider extends ServiceProvider
             'permission' => 0777,
         ]);
     
-        $router->middlewareGroup('web', [
-            VerifyCsrfToken::class
-        ]);
         if ($this->app->runningInConsole()) {
             $this->publishes([
                 __DIR__ . '/../config/config.php' => config_path('aepay.php'),
