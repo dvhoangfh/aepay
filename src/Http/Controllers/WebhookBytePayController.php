@@ -2,7 +2,7 @@
 
 namespace Dvhoangfh\Aepay\Http\Controllers;
 
-use App\Events\BytePayOrderCreated;
+use Dvhoangfh\Aepay\Events\BytePayOrderCreated;
 use Illuminate\Routing\Controller;
 use Dvhoangfh\Aepay\Models\BytePayOrder;
 use Carbon\Carbon;

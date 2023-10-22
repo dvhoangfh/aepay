@@ -3,7 +3,6 @@
 namespace Dvhoangfh\Aepay\Services;
 
 use Dvhoangfh\Aepay\Models\Customer;
-use App\Models\Subscription;
 
 class CustomerService extends BaseService
 {
