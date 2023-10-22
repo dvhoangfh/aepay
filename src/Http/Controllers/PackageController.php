@@ -177,6 +177,7 @@ class PackageController extends Controller
                             'is_one_time'    => $package->is_one_time,
                             'price'          => $package->amount * $package->billing_period,
                             'raw_data'       => json_encode($data),
+                            'site'           => $data['site'],
                         ]);
                 } catch (Exception $exception) {
                     Log::error('Charge one time paypal error:--' . $exception->getMessage() . $exception->getTraceAsString());
@@ -195,6 +196,7 @@ class PackageController extends Controller
         $packageId = $request->get('package_id');
         $userId = $request->get('user_id');
         $urlRedirect = $request->get('url_redirect');
+        $site = $request->get('site');
         if (empty($packageId) || empty($userId)) {
             return $this->sendError('Missing package or user not found');
         }
@@ -209,6 +211,7 @@ class PackageController extends Controller
                     'package_id'  => $package->id,
                     'customer_id' => $customer->id,
                     'status'      => 'CREATED',
+                    'site'        => $site,
                 ]);
                 if ($order) {
                     $orderInfo = [
