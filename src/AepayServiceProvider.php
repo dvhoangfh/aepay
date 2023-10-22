@@ -23,7 +23,7 @@ class AepayServiceProvider extends ServiceProvider
         $this->loadRoutesFrom(__DIR__ . './../routes/web.php');
         $this->app->make('config')->set('logging.channels.log-webhook-paypal', [
             'driver'     => 'daily',
-            'path'       => storage_path('log-webhook/laravel.log'),
+            'path'       => storage_path('log-webhook-paypal/laravel.log'),
             'level'      => 'info',
             'days'       => 60,
             'permission' => 0777,

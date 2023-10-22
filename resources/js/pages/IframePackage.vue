@@ -13,7 +13,7 @@ export default {
         aehub
     },
     setup() {
-        const site = JSON.parse(Site)
+        const site = 'aesport'
         return {
             site
         }
