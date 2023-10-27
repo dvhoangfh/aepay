@@ -28,6 +28,7 @@ class Package extends Model
         'trial_days',
         'raw_data',
         'package_hash_id',
+        'sellix_product_id',
     ];
     
     protected $casts = [

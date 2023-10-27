@@ -59,4 +59,8 @@ return [
         'token'   => env('TELEGRAM_BOT_TOKEN', 'YOUR BOT TOKEN HERE'),
         'chat_id' => env('TELEGRAM_CHAT_ID', 'YOUR BOT TOKEN HERE'),
     ],
+    'sellix' => [
+        'key'   => env('SELLIX_KEY', 'Q314XfKPgQNg663zLkB3c1oCSuYgTuDNEEtyvXkc3nDP8a4J54LvrfreO60uxnZa'),
+        'merchant' => env('SELLIX_MERCHANT', 'aistock'),
+    ],
 ];
