@@ -244,7 +244,7 @@ class PackageController extends Controller
     
     public function createSubscriptionSellix(Request $request): JsonResponse
     {
-        $client = new Sellix("Q314XfKPgQNg663zLkB3c1oCSuYgTuDNEEtyvXkc3nDP8a4J54LvrfreO60uxnZa", "aistock");
+        $client = new Sellix(config('services.sellix.key'), config('services.sellix.merchant'));
         $packageId = $request->get('package_id');
         $userId = $request->get('user_id');
         if (empty($packageId) || empty($userId)) {
@@ -271,7 +271,7 @@ class PackageController extends Controller
         }
         if ($package) {
             $subscriptionPayload = [
-                "product_id"    => "650b03c42e00e",
+                "product_id"    => $package->sellix_product_id,
                 "coupon_code"   => null,
                 "custom_fields" => [
                     "customer_id" => $customer->id

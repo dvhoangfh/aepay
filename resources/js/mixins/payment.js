@@ -138,6 +138,7 @@ export default {
                         data.payment_id = paymentId
                         data.userEmail = userEmail
                         data.paypalPlanId = paypalPlanId
+                        data.site = JSON.parse(Site)
                         console.log('sendEventToParent');
                         sendEventToParent('payment-success', {
                             url: "/thank-you?user_id=" + userId + "&package_id=" + packageId + "&type=paypal&&receive_code=" + data.orderID + "&subscriptionID=" + data.subscriptionID,
@@ -186,7 +187,8 @@ export default {
             const payload = {
                 'package_id': this.package.id,
                 'user_id': this.user.id,
-                'url_redirect': this.url_redirect
+                'url_redirect': this.url_redirect,
+                'site': JSON.parse(Site)
             }
             let response = await api.getPayLinkBytePay(payload)
             if (response.data.url) {
