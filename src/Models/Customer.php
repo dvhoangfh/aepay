@@ -73,7 +73,7 @@ class Customer extends Authenticatable
     public function getIsPremiumAttribute(): bool
     {
         $superUsers = ['dvhoangfh1@gmail.com', 'ducbh198@gmail.com', 'stronger.digi40@gmail.com', 'liemtt91@gmail.com'];
-        if (in_array($this->email, $superUsers) || $this->isPremiumPaypal() || $this->isTrial()) {
+        if (in_array($this->email, $superUsers) || $this->isPremiumPaypal()) {
             return true;
         }
         
