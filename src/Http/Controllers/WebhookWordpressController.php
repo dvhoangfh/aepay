@@ -11,7 +11,7 @@ class WebhookWordpressController extends Controller
     public function __invoke(Request $request)
     {
         $payload = $request->all();
-        Log::channel('log-webhook-wordpress')->info('Sellix Wordpress---' . json_encode($payload));
-        return new Response();
+        Log::channel('log-webhook-wordpress')->info('Wordpress webhook---' . json_encode($payload));
+        return \response()->json($payload);
     }
 }
