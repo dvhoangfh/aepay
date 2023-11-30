@@ -5,6 +5,7 @@ use Dvhoangfh\Aepay\Http\Controllers\WebhookPayPalController;
 use Dvhoangfh\Aepay\Http\Controllers\WebhookBytePayController;
 use Dvhoangfh\Aepay\Http\Controllers\PackageController;
 use Dvhoangfh\Aepay\Http\Controllers\WebhookSellixController;
+use Dvhoangfh\Aepay\Http\Controllers\WebhookWordpressController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/package-iframe', [IframeController::class, 'index'])->name('iframe');
@@ -12,7 +13,7 @@ Route::get('/package-iframe', [IframeController::class, 'index'])->name('iframe'
 Route::post('/paypal/webhook', WebhookPayPalController::class)->name('paypal.webhook');
 Route::post('/bytepay/webhook', WebhookBytePayController::class)->name('bytepay.webhook');
 Route::post('/sellix/webhook', WebhookSellixController::class)->name('sellix.webhook');
-Route::post('/wordpress/webhook', WebhookSellixController::class)->name('wordpress.webhook');
+Route::post('/wordpress/webhook', WebhookWordpressController::class)->name('wordpress.webhook');
 
 Route::get('/thank', [PackageController::class, 'thank'])->name('thank');
 

@@ -42,7 +42,7 @@ class AepayServiceProvider extends ServiceProvider
             'days'       => 60,
             'permission' => 0777,
         ]);
-        $this->app->make('config')->set('logging.channels.log-wordpress-sellix', [
+        $this->app->make('config')->set('logging.channels.log-webhook-wordpress', [
             'driver'     => 'daily',
             'path'       => storage_path('log-webhook-wordpress/laravel.log'),
             'level'      => 'info',
