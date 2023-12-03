@@ -9,6 +9,7 @@ const urlCharge = '/api/charge'
 const urlHandleLog = '/api/handle_log'
 const urlPayLinkBytePay = '/api/paylink-bytepay'
 const urlCreateSubscriptionSellix = '/api/create-subscription-sellix'
+const urlCreateWordpressOrder = '/api/create-wordpress-order'
 
 export default {
     getDetailMatch(matchId, payload) {
@@ -37,5 +38,8 @@ export default {
     },
     createSellixSubscription(payload) {
         return client.post(urlCreateSubscriptionSellix, payload)
+    },
+    createWordpressOrder(payload) {
+        return client.post(urlCreateWordpressOrder, payload)
     },
 }

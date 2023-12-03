@@ -24,3 +24,4 @@ Route::post('/api/paylink-bytepay', [PackageController::class, 'getPayLinkBytePa
 Route::post('/api/charge', [PackageController::class, 'charge'])->name('charge');
 Route::post('/api/handle_log', [PackageController::class, 'handleLog'])->name('handle_log');
 Route::post('/api/create-subscription-sellix', [PackageController::class, 'createSubscriptionSellix'])->name('package.create_subscription_sellix');
+Route::post('/api/create-wordpress-order', [PackageController::class, 'createWordpressOrder'])->name('package.create_wordpress_order');

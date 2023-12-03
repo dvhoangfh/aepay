@@ -29,6 +29,7 @@ class Package extends Model
         'raw_data',
         'package_hash_id',
         'sellix_product_id',
+        'wordpress_product_id',
     ];
     
     protected $casts = [

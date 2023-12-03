@@ -30,6 +30,7 @@ export default {
             voucher_error: '',
             paypal_unavailable: false,
             url_redirect: '',
+            url_callback: '',
             is_enable_paypal: false,
             is_enable_bytepay: false,
             is_enable_sellix: false,
@@ -52,6 +53,7 @@ export default {
         this.payment_id = JSON.parse(PaymentId)
         this.vouchers = JSON.parse(Vouchers)
         this.url_redirect = JSON.parse(UrlRedirect)
+        this.url_callback = JSON.parse(UrlCallback)
         this.is_enable_paypal = JSON.parse(IsEnablePaypal)
         this.is_enable_bytepay = JSON.parse(IsEnableBytePay)
         this.is_enable_sellix = JSON.parse(IsEnableSellix)
@@ -204,6 +206,17 @@ export default {
             let response = await api.createSellixSubscription(payload)
             if (response.data.url) {
                 sendEventToParent('url', {url: response.data.url})
+            }
+        },
+        async onCheckoutWp() {
+            const payload = {
+                'package_id': this.package.id,
+                'user_id': this.user.id,
+                'site': JSON.parse(Site)
+            }
+            let response = await api.createWordpressOrder(payload)
+            if (response.data.url) {
+                sendEventToParent('url', { url: response.data.url})
             }
         }
     }

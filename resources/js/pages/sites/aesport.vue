@@ -63,6 +63,9 @@
                     fill="var(--black4)"></path>
               </svg>
             </div>
+            <div v-if="is_enable_paypal" style="margin-top: 20px" class="wp-button-container" @click="onCheckoutWp">
+              24Gift
+            </div>
             <div v-if="is_enable_bytepay" class="cc-button-container" @click="onCheckoutCC">
               <img src="vendor/aepay/images/jcb@2x.png" alt="">
               <img src="vendor/aepay/images/mastercard@2x.png" alt="">
@@ -200,7 +203,7 @@ export default {
   }
 }
 
-.sellix-button-container {
+.sellix-button-container, .wp-button-container {
   background: #e5edee;
   border-radius: 10px;
   height: 55px;

@@ -41,6 +41,8 @@
     var IsEnablePaypal = '@json($is_enable_paypal)';
     var IsEnableBytePay = '@json($is_enable_bytepay)';
     var IsEnableSellix = '@json($is_enable_sellix)';
+    var UrlCallback = '@json($url_callback)';
+    var UrlWebhook= '@json(route('wordpress.webhook'))';
 
     function sendEventToParent(event, data) {
         parent.postMessage(JSON.stringify({

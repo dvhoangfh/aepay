@@ -9,6 +9,7 @@ use Dvhoangfh\Aepay\Models\PaypalSubscription;
 use Dvhoangfh\Aepay\Models\SellixSubscription;
 use Dvhoangfh\Aepay\Models\Subscription;
 use Dvhoangfh\Aepay\Models\Voucher;
+use Dvhoangfh\Aepay\Models\WordpressOrder;
 use Dvhoangfh\Aepay\Services\BytePayService;
 use Dvhoangfh\Aepay\Services\CustomerService;
 use Dvhoangfh\Aepay\Services\PackageService;
@@ -24,6 +25,7 @@ use Illuminate\Support\Facades\Log;
 use Exception;
 use Sellix\PhpSdk\Sellix;
 use Sellix\PhpSdk\SellixException;
+use Stripe\Order;
 
 class PackageController extends Controller
 {
@@ -122,6 +124,24 @@ class PackageController extends Controller
                 return redirect($urlRedirect . '?' . http_build_query($data));
             }
             
+            $url = "/thank-you?" . http_build_query($data);
+            return view('thank-bp', ['data' => $data, 'url' => $url]);
+        }
+        if (!empty($request->get('woo_order_id'))) {
+            $data = $request->all();
+            $order = WordpressOrder::with('package')->find($data['order_id']);
+            if ($order) {
+                if (!empty($data['status'])) {
+                    $order->status = $data['status'];
+                }
+                if (!empty($data['woo_order_id'])) {
+                    $order->order_id = $data['woo_order_id'];
+                }
+                $now = now();
+                $order->start_at = $now;
+                $order->ends_at = $now->addDays(PackageService::getDay($order->package->package_hash_id));
+                $order->save();
+            }
             $url = "/thank-you?" . http_build_query($data);
             return view('thank-bp', ['data' => $data, 'url' => $url]);
         }
@@ -301,6 +321,37 @@ class PackageController extends Controller
             }
         }
         
+        return $this->sendResponse('Success', ['url' => $payLink]);
+    }
+    
+    public function createWordpressOrder(Request $request): JsonResponse
+    {
+        $packageId = $request->get('package_id');
+        $userId = $request->get('user_id');
+        $site = $request->get('site');
+        if (empty($packageId) || empty($userId)) {
+            return $this->sendError('Missing package or user not found');
+        }
+        $package = Package::find($packageId);
+        $customer = Customer::find($userId);
+        $orderId = 'OD' . time();
+        $order = WordpressOrder::create([
+            'order_id'    => $orderId,
+            'package_id'  => $package->id,
+            'customer_id' => $customer->id,
+            'status'      => 'CREATED',
+            'site'        => $site,
+            'amount' => floatval($package->raw_price)
+        ]);
+        $payLink = [
+            'product_id' => $package->wordpress_product_id,
+            'email' => $customer->email,
+            'order_id' => $order->id,
+            'callback' => route('thank'),
+            'webhook' => route('wordpress.webhook'),
+            'payment' => 'paypal'
+        ];
+        $payLink = 'https://24gift.org/checkout?' . http_build_query($payLink);
         return $this->sendResponse('Success', ['url' => $payLink]);
     }
 }

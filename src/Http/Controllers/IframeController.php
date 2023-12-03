@@ -27,7 +27,7 @@ class IframeController extends Controller
         }
         $user = Customer::where('id', $userId)->select('id', 'email')->first();
         $paypal = Payment::find($paymentId);
-        $packages = Package::where('status', Package::STATUS_ACTIVE)->select(['id', 'name', 'amount', 'is_recommend', 'paddle_id', 'trial_days', 'billing_period', 'billing_type', 'paypal_plan_id', 'package_hash_id', 'sellix_product_id'])->get();
+        $packages = Package::where('status', Package::STATUS_ACTIVE)->select(['id', 'name', 'amount', 'is_recommend', 'paddle_id', 'trial_days', 'billing_period', 'billing_type', 'paypal_plan_id', 'package_hash_id', 'sellix_product_id', 'wordpress_product_id'])->get();
         foreach ($packages as &$package) {
             $package->day_value = PackageService::getDay($package->package_hash_id);
             $package->per_day = PackageService::getPerValue($package->amount * $package->billing_period, $package->package_hash_id);
@@ -37,7 +37,9 @@ class IframeController extends Controller
         $enablePaypal = app(SettingService::class)->get('enable_paypal', 'off');
         $enableBytepay = app(SettingService::class)->get('enable_bytepay', 'off');
         $enableSellix = app(SettingService::class)->get('enable_sellix', 'off');
+        $enableWordpress = app(SettingService::class)->get('enable_wordpress', 'off');
         $urlRedirect = $request->get('url_redirect');
+        $urlCallBack = route('thank');
         
         return view('aepay::iframe', [
             'packages'     => $packages,
@@ -51,7 +53,9 @@ class IframeController extends Controller
             'is_enable_paypal'  => $enablePaypal === 'on',
             'is_enable_bytepay' => $enableBytepay === 'on',
             'is_enable_sellix'  => $enableSellix === 'on',
+            'is_enable_wordpress'  => $enableWordpress === 'on',
             'url_redirect' => $urlRedirect,
+            'url_callback' => $urlCallBack,
         ]);
     }
     
