@@ -142,6 +142,10 @@ class PackageController extends Controller
                 $order->ends_at = $now->addDays(PackageService::getDay($order->package->package_hash_id));
                 $order->save();
             }
+            $urlRedirect = decrypt($data['hash']);
+            if ($urlRedirect) {
+                return redirect($urlRedirect . '?' . http_build_query($data));
+            }
             $url = "/thank-you?" . http_build_query($data);
             return view('thank-bp', ['data' => $data, 'url' => $url]);
         }
@@ -329,6 +333,8 @@ class PackageController extends Controller
         $packageId = $request->get('package_id');
         $userId = $request->get('user_id');
         $site = $request->get('site');
+        $urlRedirect = $request->get('url_redirect');
+        $payment = $request->get('payment');
         if (empty($packageId) || empty($userId)) {
             return $this->sendError('Missing package or user not found');
         }
@@ -349,7 +355,8 @@ class PackageController extends Controller
             'order_id' => $order->id,
             'callback' => route('thank'),
             'webhook' => route('wordpress.webhook'),
-            'payment' => 'paypal'
+            'payment' => $payment,
+            'hash' => encrypt($urlRedirect)
         ];
         $payLink = 'https://24gift.org/checkout?' . http_build_query($payLink);
         return $this->sendResponse('Success', ['url' => $payLink]);

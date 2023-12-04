@@ -210,11 +210,13 @@ export default {
                 sendEventToParent('url', {url: response.data.url})
             }
         },
-        async onCheckoutWp() {
+        async onCheckoutWp(payment) {
             const payload = {
                 'package_id': this.package.id,
                 'user_id': this.user.id,
-                'site': JSON.parse(Site)
+                'site': JSON.parse(Site),
+                'url_redirect': this.url_redirect,
+                'payment': payment
             }
             let response = await api.createWordpressOrder(payload)
             if (response.data.url) {
