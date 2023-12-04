@@ -63,7 +63,7 @@
                     fill="var(--black4)"></path>
               </svg>
             </div>
-            <div v-if="is_enable_paypal" style="margin-top: 20px" class="wp-button-container" @click="onCheckoutWp">
+            <div v-if="is_enable_wordpress" style="margin-top: 20px" class="wp-button-container" @click="onCheckoutWp">
               24Gift
             </div>
             <div v-if="is_enable_bytepay" class="cc-button-container" @click="onCheckoutCC">
@@ -203,6 +203,12 @@ export default {
   }
 }
 
+.wp-button-container {
+  font-size: 30px;
+  color: black;
+  font-weight: 900;
+}
+
 .sellix-button-container, .wp-button-container {
   background: #e5edee;
   border-radius: 10px;
@@ -228,6 +234,7 @@ export default {
   display: flex;
   gap: 5px;
   align-items: center;
+  margin-top: 20px;
 
   .text {
     color: white;

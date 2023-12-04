@@ -34,6 +34,7 @@ export default {
             is_enable_paypal: false,
             is_enable_bytepay: false,
             is_enable_sellix: false,
+            is_enable_wordpress: false,
         }
     },
     computed: {
@@ -57,6 +58,7 @@ export default {
         this.is_enable_paypal = JSON.parse(IsEnablePaypal)
         this.is_enable_bytepay = JSON.parse(IsEnableBytePay)
         this.is_enable_sellix = JSON.parse(IsEnableSellix)
+        this.is_enable_wordpress = JSON.parse(IsWordPress)
         window.addEventListener("message", this.choosePlan, false)
         try {
             await this.mountPaypalButton()
