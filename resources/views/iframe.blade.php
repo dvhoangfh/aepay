@@ -43,6 +43,8 @@
     var IsEnableSellix = '@json($is_enable_sellix)';
     var IsWordPress = '@json($is_enable_wordpress)';
     var UrlCallback = '@json($url_callback)';
+    var UrlBack = '@json($url_back)';
+    var WordpressParam = '@json($wordpressParam)';
     var UrlWebhook= '@json(route('wordpress.webhook'))';
 
     function sendEventToParent(event, data) {

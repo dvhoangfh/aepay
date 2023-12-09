@@ -31,6 +31,7 @@ export default {
             paypal_unavailable: false,
             url_redirect: '',
             url_callback: '',
+            url_back: '',
             is_enable_paypal: false,
             is_enable_bytepay: false,
             is_enable_sellix: false,
@@ -55,6 +56,7 @@ export default {
         this.vouchers = JSON.parse(Vouchers)
         this.url_redirect = JSON.parse(UrlRedirect)
         this.url_callback = JSON.parse(UrlCallback)
+        this.url_back = JSON.parse(UrlBack)
         this.is_enable_paypal = JSON.parse(IsEnablePaypal)
         this.is_enable_bytepay = JSON.parse(IsEnableBytePay)
         this.is_enable_sellix = JSON.parse(IsEnableSellix)
@@ -211,13 +213,11 @@ export default {
             }
         },
         async onCheckoutWp(payment) {
-            const payload = {
+            const param = JSON.parse(WordpressParam)
+            const payload = Object.assign({}, param, {
+                'payment': payment,
                 'package_id': this.package.id,
-                'user_id': this.user.id,
-                'site': JSON.parse(Site),
-                'url_redirect': this.url_redirect,
-                'payment': payment
-            }
+            })
             let response = await api.createWordpressOrder(payload)
             if (response.data.url) {
                 sendEventToParent('url', { url: response.data.url})

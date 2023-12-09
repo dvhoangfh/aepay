@@ -335,6 +335,7 @@ class PackageController extends Controller
         $site = $request->get('site');
         $urlRedirect = $request->get('url_redirect');
         $payment = $request->get('payment');
+        $urlBack = $request->get('back');
         if (empty($packageId) || empty($userId)) {
             return $this->sendError('Missing package or user not found');
         }
@@ -356,7 +357,8 @@ class PackageController extends Controller
             'callback' => route('thank'),
             'webhook' => route('wordpress.webhook'),
             'payment' => $payment,
-            'hash' => encrypt($urlRedirect)
+            'hash' => encrypt($urlRedirect),
+            'back' => $urlBack
         ];
         $payLink = 'https://24gift.org/checkout?' . http_build_query($payLink);
         return $this->sendResponse('Success', ['url' => $payLink]);

@@ -20,7 +20,7 @@ class IframeController extends Controller
         $signatureService = app()->make(Signature::class);
         $userId = $request->get('user_id');
         $paymentId = $request->get('payment_id');
-        $site = $request->get('site');
+        $site = $request->get('site', 'aesport');
         $signature = $this->getSignature($request);
         if (!$signatureService->verifySignature($request->query(), $signature, 'iframe')) {
             return view('aepay::wrong-signature');
@@ -40,6 +40,13 @@ class IframeController extends Controller
         $enableWordpress = app(SettingService::class)->get('enable_wordpress', 'off');
         $urlRedirect = $request->get('url_redirect');
         $urlCallBack = route('thank');
+        $urlBack = $request->get('url_back');
+        $wordPressParam = [
+            'user_id' => $userId,
+            'site' => $site,
+            'url_redirect' => $urlRedirect,
+            'back' => $urlBack
+        ];
         
         return view('aepay::iframe', [
             'packages'     => $packages,
@@ -49,13 +56,15 @@ class IframeController extends Controller
             'plans'        => $paypal->plans,
             'paymentId'    => $paymentId,
             'vouchers'     => $vouchers,
-            'site'         => $site ?? 'aesport',
+            'site'         => $site,
             'is_enable_paypal'  => $enablePaypal === 'on',
             'is_enable_bytepay' => $enableBytepay === 'on',
             'is_enable_sellix'  => $enableSellix === 'on',
             'is_enable_wordpress'  => $enableWordpress === 'on',
             'url_redirect' => $urlRedirect,
             'url_callback' => $urlCallBack,
+            'url_back' => $urlBack,
+            'wordpressParam' => $wordPressParam,
         ]);
     }
     
