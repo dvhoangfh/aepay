@@ -47,7 +47,16 @@ class IframeController extends Controller
             'url_redirect' => $urlRedirect,
             'back' => $urlBack
         ];
-        
+        $settings = [
+            'is_enable_paypal' => app(SettingService::class)->get('enable_paypal', 'off') === 'on',
+            'is_enable_bytepay' => app(SettingService::class)->get('enable_bytepay', 'off') === 'on',
+            'is_enable_sellix' => app(SettingService::class)->get('enable_sellix', 'off') === 'on',
+            'is_enable_wordpress_paypal' => app(SettingService::class)->get('enable_wordpress_paypal', 'off') === 'on',
+            'is_enable_wordpress_stripe' => app(SettingService::class)->get('enable_wordpress_stripe', 'off') === 'on',
+            'is_enable_wordpress_paycec' => app(SettingService::class)->get('enable_wordpress_paycec', 'off') === 'on',
+        ];
+    
+    
         return view('aepay::iframe', [
             'packages'     => $packages,
             'user_id'      => $userId,
@@ -65,6 +74,7 @@ class IframeController extends Controller
             'url_callback' => $urlCallBack,
             'url_back' => $urlBack,
             'wordpressParam' => $wordPressParam,
+            'settings' => $settings
         ]);
     }
     

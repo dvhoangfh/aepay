@@ -46,6 +46,7 @@
     var UrlBack = '@json($url_back)';
     var WordpressParam = '@json($wordpressParam)';
     var UrlWebhook= '@json(route('wordpress.webhook'))';
+    var Settings= '@json($settings)';
 
     function sendEventToParent(event, data) {
         parent.postMessage(JSON.stringify({
