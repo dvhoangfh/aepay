@@ -21,10 +21,10 @@ class IframeController extends Controller
         $userId = $request->get('user_id');
         $paymentId = $request->get('payment_id');
         $site = $request->get('site', 'aesport');
-        $signature = $this->getSignature($request);
-        if (!$signatureService->verifySignature($request->query(), $signature, 'iframe')) {
-            return view('aepay::wrong-signature');
-        }
+//        $signature = $this->getSignature($request);
+//        if (!$signatureService->verifySignature($request->query(), $signature, 'iframe')) {
+//            return view('aepay::wrong-signature');
+//        }
         $user = Customer::where('id', $userId)->select('id', 'email')->first();
         $paypal = Payment::find($paymentId);
         $packages = Package::where('status', Package::STATUS_ACTIVE)->select(['id', 'name', 'amount', 'is_recommend', 'paddle_id', 'trial_days', 'billing_period', 'billing_type', 'paypal_plan_id', 'package_hash_id', 'sellix_product_id', 'wordpress_product_id'])->get();
