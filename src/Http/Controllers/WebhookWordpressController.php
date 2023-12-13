@@ -2,6 +2,7 @@
 
 namespace Dvhoangfh\Aepay\Http\Controllers;
 
+use Dvhoangfh\Aepay\Events\OrderCreated;
 use Dvhoangfh\Aepay\Models\WordpressOrder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -18,6 +19,7 @@ class WebhookWordpressController extends Controller
                 $order->status = $payload['status'];
             }
             $order->save();
+            OrderCreated::dispatch($order->order_id);
         }
         return \response()->json($payload);
     }
