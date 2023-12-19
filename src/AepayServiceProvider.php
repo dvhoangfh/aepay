@@ -2,8 +2,10 @@
 
 namespace Dvhoangfh\Aepay;
 
+use Dvhoangfh\Aepay\Commands\ReportOrder;
 use Dvhoangfh\Aepay\Middleware\VerifyCsrfToken;
 use Dvhoangfh\Aepay\Providers\EventServiceProvider;
+use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Routing\Router;
 use Illuminate\Support\ServiceProvider;
 
@@ -71,8 +73,15 @@ class AepayServiceProvider extends ServiceProvider
             ], 'lang');*/
             
             // Registering package commands.
-            // $this->commands([]);
+             $this->commands([
+                 ReportOrder::class
+             ]);
         }
+    
+        $this->app->booted(function () {
+            $schedule = $this->app->make(Schedule::class);
+            $schedule->command('report:order')->dailyAt('13:00');
+        });
     }
     
     /**
