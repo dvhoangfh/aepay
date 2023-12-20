@@ -77,11 +77,6 @@ class AepayServiceProvider extends ServiceProvider
                  ReportOrder::class
              ]);
         }
-    
-        $this->app->booted(function () {
-            $schedule = $this->app->make(Schedule::class);
-            $schedule->command('report:order')->dailyAt('13:00');
-        });
     }
     
     /**
