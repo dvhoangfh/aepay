@@ -2,9 +2,7 @@
 
 namespace Dvhoangfh\Aepay\Listeners;
 
-use Dvhoangfh\Aepay\Events\BytePayOrderCreated;
 use Dvhoangfh\Aepay\Events\OrderCreated;
-use Dvhoangfh\Aepay\Models\BytePayOrder;
 use Dvhoangfh\Aepay\Models\WordpressOrder;
 use Illuminate\Support\Facades\Log;
 use Telegram\Bot\Api;
@@ -34,7 +32,7 @@ class SendNotiOrderCreated
                 'order_id' => $payload->payload,
                 'package'  => $order->package->name,
                 'email'    => $order->customer->email,
-                'amount'   => 0,
+                'amount'   => $order->amount,
             ];
             $telegram->sendMessage(
                 [
@@ -44,6 +42,7 @@ class SendNotiOrderCreated
                         "<strong>Via : </strong>" . $data['service'] . "\n" .
                         "<strong>Order ID : </strong>" . $data['order_id'] . "\n" .
                         "<strong>Package : </strong>" . $data['package'] . "\n" .
+                        "<strong>Amount : </strong>" . $data['amount'] . "\n" .
                         "<strong>Email : </strong>" . $data['email'] . "\n" .
                         "<i>Message has sent form <b>Aesport Team</b></i>"
                 ]
