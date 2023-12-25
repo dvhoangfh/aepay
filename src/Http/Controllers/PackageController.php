@@ -26,6 +26,7 @@ use Exception;
 use Sellix\PhpSdk\Sellix;
 use Sellix\PhpSdk\SellixException;
 use Stripe\Order;
+use Telegram\Bot\Api;
 
 class PackageController extends Controller
 {
@@ -129,7 +130,7 @@ class PackageController extends Controller
         }
         if (!empty($request->get('woo_order_id'))) {
             $data = $request->all();
-            $order = WordpressOrder::with('package')->find($data['order_id']);
+            $order = WordpressOrder::with('package', 'customer')->find($data['order_id']);
             if ($order) {
                 if (!empty($data['status'])) {
                     $order->status = $data['status'];
@@ -141,6 +142,31 @@ class PackageController extends Controller
                 $order->start_at = $now;
                 $order->ends_at = $now->addDays(PackageService::getDay($order->package->package_hash_id));
                 $order->save();
+                try {
+                    $telegram = new Api(config('services.telegram-bot-api.token'));
+                    $data = [
+                        'service'  => 'WP',
+                        'order_id' => $data['woo_order_id'],
+                        'package'  => $order->package->name,
+                        'email'    => $order->customer->email,
+                        'amount'   => $order->amount,
+                    ];
+                    $telegram->sendMessage(
+                        [
+                            'chat_id'    => config('services.telegram-bot-api.chat_id'),
+                            'parse_mode' => 'HTML',
+                            'text'       => "<strong>App name: </strong>" . "Aesport TV" . "\n" .
+                                "<strong>Via : </strong>" . $data['service'] . "\n" .
+                                "<strong>Order ID : </strong>" . $data['order_id'] . "\n" .
+                                "<strong>Package : </strong>" . $data['package'] . "\n" .
+                                "<strong>Amount : </strong>" . $data['amount'] . "\n" .
+                                "<strong>Email : </strong>" . $data['email'] . "\n" .
+                                "<i>Message has sent form <b>Aesport Team</b></i>"
+                        ]
+                    );
+                } catch (\Exception $exception) {
+                    Log::error('send telegram message error' . $exception->getMessage());
+                }
             }
             $urlRedirect = decrypt($data['hash']);
             if ($urlRedirect) {
@@ -348,7 +374,8 @@ class PackageController extends Controller
             'customer_id' => $customer->id,
             'status'      => 'CREATED',
             'site'        => $site,
-            'amount' => floatval($package->raw_price)
+            'amount' => floatval($package->raw_price),
+            'payment_type' => $payment
         ]);
         $payLink = [
             'product_id' => $package->wordpress_product_id,

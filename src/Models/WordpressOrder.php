@@ -20,6 +20,7 @@ class WordpressOrder extends Model
         'ends_at',
         'site',
         'amount',
+        'payment_type',
     ];
     
     public function customer()
