@@ -161,7 +161,7 @@ class PackageController extends Controller
                                 "<strong>Package : </strong>" . $data['package'] . "\n" .
                                 "<strong>Amount : </strong>" . $data['amount'] . "\n" .
                                 "<strong>Email : </strong>" . $data['email'] . "\n" .
-                                "<i>Message has sent form <b>Aesport Team</b></i>"
+                                "<i>Message has sent form <b>Aesport Team (Callback)</b></i>"
                         ]
                     );
                 } catch (\Exception $exception) {
