@@ -130,6 +130,7 @@ class PackageController extends Controller
         }
         if (!empty($request->get('woo_order_id'))) {
             $data = $request->all();
+            Log::channel('log-webhook-wordpress')->info('Wordpress callback---' . json_encode($data));
             $order = WordpressOrder::with('package', 'customer')->find($data['order_id']);
             if ($order) {
                 if (!empty($data['status'])) {
