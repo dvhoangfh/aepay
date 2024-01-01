@@ -10,6 +10,10 @@ class WordpressOrder extends Model
     
     protected $dates = ['start_at', 'ends_at'];
     
+    protected $casts = [
+        'is_send_notify' => 'boolean',
+    ];
+    
     protected $fillable = [
         'order_id',
         'package_id',
@@ -21,6 +25,7 @@ class WordpressOrder extends Model
         'site',
         'amount',
         'payment_type',
+        'is_send_notify',
     ];
     
     public function customer()

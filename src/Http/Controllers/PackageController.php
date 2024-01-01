@@ -143,30 +143,34 @@ class PackageController extends Controller
                 $order->start_at = $now;
                 $order->ends_at = $now->addDays(PackageService::getDay($order->package->package_hash_id));
                 $order->save();
-                try {
-                    $telegram = new Api(config('services.telegram-bot-api.token'));
-                    $data = [
-                        'service'  => 'WP',
-                        'order_id' => $data['woo_order_id'],
-                        'package'  => $order->package->name,
-                        'email'    => $order->customer->email,
-                        'amount'   => $order->amount,
-                    ];
-                    $telegram->sendMessage(
-                        [
-                            'chat_id'    => config('services.telegram-bot-api.chat_id'),
-                            'parse_mode' => 'HTML',
-                            'text'       => "<strong>App name: </strong>" . "Aesport TV" . "\n" .
-                                "<strong>Via : </strong>" . $data['service'] . "\n" .
-                                "<strong>Order ID : </strong>" . $data['order_id'] . "\n" .
-                                "<strong>Package : </strong>" . $data['package'] . "\n" .
-                                "<strong>Amount : </strong>" . $data['amount'] . "\n" .
-                                "<strong>Email : </strong>" . $data['email'] . "\n" .
-                                "<i>Message has sent form <b>Aesport Team (Callback)</b></i>"
-                        ]
-                    );
-                } catch (\Exception $exception) {
-                    Log::error('send telegram message error' . $exception->getMessage());
+                if (!$order->is_send_notify) {
+                    try {
+                        $telegram = new Api(config('services.telegram-bot-api.token'));
+                        $data = [
+                            'service'  => 'WP',
+                            'order_id' => $data['woo_order_id'],
+                            'package'  => $order->package->name,
+                            'email'    => $order->customer->email,
+                            'amount'   => $order->amount,
+                        ];
+                        $telegram->sendMessage(
+                            [
+                                'chat_id'    => config('services.telegram-bot-api.chat_id'),
+                                'parse_mode' => 'HTML',
+                                'text'       => "<strong>App name: </strong>" . "Aesport TV" . "\n" .
+                                    "<strong>Via : </strong>" . $data['service'] . "\n" .
+                                    "<strong>Order ID : </strong>" . $data['order_id'] . "\n" .
+                                    "<strong>Package : </strong>" . $data['package'] . "\n" .
+                                    "<strong>Amount : </strong>" . $data['amount'] . "\n" .
+                                    "<strong>Email : </strong>" . $data['email'] . "\n" .
+                                    "<i>Message has sent form <b>Aesport Team (Callback)</b></i>"
+                            ]
+                        );
+                        $order->is_send_notify = true;
+                        $order->save();
+                    } catch (\Exception $exception) {
+                        Log::error('send telegram message error' . $exception->getMessage());
+                    }
                 }
             }
             $urlRedirect = decrypt($data['hash']);
