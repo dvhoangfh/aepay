@@ -173,7 +173,23 @@ class PackageController extends Controller
                     }
                 }
             }
-            $urlRedirect = decrypt($data['hash']);
+            $urlRedirect = '';
+            try {
+                $urlRedirect = decrypt($data['hash'] ?? '');
+                dd($urlRedirect);
+            } catch (Exception $e) {
+                Log::error('Decrypt hash error ' . $data['hash']);
+            }
+            if (!$urlRedirect) {
+                switch ($order->site) {
+                    case '24h':
+                        $urlRedirect = 'https://24sport.tv/thank-you';
+                        break;
+                    default:
+                        $urlRedirect = 'https://aesport.tv/thank-you';
+                        break;
+                }
+            }
             if ($urlRedirect) {
                 return redirect($urlRedirect . '?' . http_build_query($data));
             }
@@ -392,6 +408,7 @@ class PackageController extends Controller
             'hash' => encrypt($urlRedirect),
             'back' => $urlBack
         ];
+        Log::info('Payload send wp ' . json_encode($payLink));
         $payLink = 'https://24gift.org/checkout?' . http_build_query($payLink);
         return $this->sendResponse('Success', ['url' => $payLink]);
     }
