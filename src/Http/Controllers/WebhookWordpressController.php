@@ -20,6 +20,7 @@ class WebhookWordpressController extends Controller
                 $order->status = $payload['status'];
             }
             $order->save();
+            OrderCreated::dispatch($order->order_id);
         }
         return \response()->json($payload);
     }

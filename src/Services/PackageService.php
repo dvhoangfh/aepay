@@ -68,4 +68,28 @@ class PackageService
                 return 0;
         }
     }
+    
+    public static function getPackageName($hashId): int
+    {
+        switch ($hashId) {
+            case '1m':
+                $package = '1 Month';
+                break;
+            case '3m':
+                $package = '3 Months';
+                break;
+            case '1y':
+                $package = '1 Year';
+                break;
+            case '1d':
+                $package = '1 Day';
+                break;
+            case '5d':
+                $package = '5 Days';
+                break;
+            default:
+                $package = '';
+        }
+        return $package;
+    }
 }
