@@ -71,6 +71,10 @@ class AepayServiceProvider extends ServiceProvider
             /*$this->publishes([
                 __DIR__.'/../resources/lang' => resource_path('lang/vendor/aepay'),
             ], 'lang');*/
+    
+            $this->publishes([
+                __DIR__.'/../database/migrations' => $this->app->databasePath('migrations'),
+            ], 'aepay-migrations');
             
             // Registering package commands.
              $this->commands([
