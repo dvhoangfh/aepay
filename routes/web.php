@@ -1,5 +1,6 @@
 <?php
 
+use Dvhoangfh\Aepay\Http\Controllers\GgIframeController;
 use Dvhoangfh\Aepay\Http\Controllers\IframeController;
 use Dvhoangfh\Aepay\Http\Controllers\WebhookPayPalController;
 use Dvhoangfh\Aepay\Http\Controllers\WebhookBytePayController;
@@ -9,6 +10,7 @@ use Dvhoangfh\Aepay\Http\Controllers\WebhookWordpressController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/package-iframe', [IframeController::class, 'index'])->name('iframe');
+Route::get('/gg-iframe', [GgIframeController::class, 'index'])->name('gg-iframe');
 
 Route::post('/paypal/webhook', WebhookPayPalController::class)->name('paypal.webhook');
 Route::post('/bytepay/webhook', WebhookBytePayController::class)->name('bytepay.webhook');
