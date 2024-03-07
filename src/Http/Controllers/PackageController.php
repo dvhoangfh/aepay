@@ -34,7 +34,7 @@ class PackageController extends Controller
     private $customerService;
     private $paddleService;
     private BytePayService $bytePayService;
-    
+
     public function __construct()
     {
         $this->packageService = app(PackageService::class);
@@ -42,7 +42,7 @@ class PackageController extends Controller
         $this->paddleService = app(PaddleService::class);
         $this->bytePayService = app(BytePayService::class);
     }
-    
+
     /**
      * @return Application|Factory|View
      */
@@ -53,7 +53,7 @@ class PackageController extends Controller
             'user'     => $this->customerService->getInfo(Auth::id())
         ]);
     }
-    
+
     /**
      * @param Request $request
      * @return JsonResponse
@@ -72,10 +72,10 @@ class PackageController extends Controller
                 Log::error('Get pay link error----' . $exception->getMessage());
             }
         }
-        
+
         return $this->sendResponse('Success', ['url' => $payLink]);
     }
-    
+
     /**
      * @param Request $request
      * @return JsonResponse
@@ -106,10 +106,10 @@ class PackageController extends Controller
                 return $this->sendError('Something went wrong. Please ');
             }
         }
-        
+
         return $this->sendResponse('Success', ['url' => $payLink]);
     }
-    
+
     /**
      * @param Request $request
      * @return Application|Factory|View
@@ -124,7 +124,7 @@ class PackageController extends Controller
             if ($urlRedirect) {
                 return redirect($urlRedirect . '?' . http_build_query($data));
             }
-            
+
             $url = "/thank-you?" . http_build_query($data);
             return view('thank-bp', ['data' => $data, 'url' => $url]);
         }
@@ -196,10 +196,10 @@ class PackageController extends Controller
             $url = "/thank-you?" . http_build_query($data);
             return view('thank-bp', ['data' => $data, 'url' => $url]);
         }
-        
+
         return view('thank', ['data' => $this->paddleService->getCheckout($checkout)]);
     }
-    
+
     public function charge(Request $request)
     {
         $data = $request->all();
@@ -256,12 +256,12 @@ class PackageController extends Controller
             }
         }
     }
-    
+
     public function handleLog(Request $request)
     {
         Log::error('Paypal Approve Error : ' . json_encode($request->all()));
     }
-    
+
     public function getPayLinkBytePay(Request $request): JsonResponse
     {
         $packageId = $request->get('package_id');
@@ -309,10 +309,10 @@ class PackageController extends Controller
                 return $this->sendError('Something went wrong. Please ');
             }
         }
-        
+
         return $this->sendResponse('Success', ['url' => $payLink]);
     }
-    
+
     public function createSubscriptionSellix(Request $request): JsonResponse
     {
         $client = new Sellix(config('services.sellix.key'), config('services.sellix.merchant'));
@@ -350,7 +350,7 @@ class PackageController extends Controller
                 "customer_id"   => $sellixCustomerId,
                 "gateway"       => null
             ];
-            
+
             try {
                 $response = $client->create_subscription($subscriptionPayload);
                 if (!empty($response->uniqid)) {
@@ -362,7 +362,7 @@ class PackageController extends Controller
                         'status'          => 'CREATED',
                     ]);
                 }
-                
+
                 if (!empty($response->url)) {
                     return $this->sendResponse('Success', ['url' => $response->url]);
                 }
@@ -371,10 +371,10 @@ class PackageController extends Controller
                 return $this->sendError('Something went wrong. Please ');
             }
         }
-        
+
         return $this->sendResponse('Success', ['url' => $payLink]);
     }
-    
+
     public function createWordpressOrder(Request $request): JsonResponse
     {
         $packageId = $request->get('package_id');
@@ -390,26 +390,26 @@ class PackageController extends Controller
         $customer = Customer::find($userId);
         $orderId = 'OD' . time();
         $order = WordpressOrder::create([
-            'order_id'    => $orderId,
-            'package_id'  => $package->id,
-            'customer_id' => $customer->id,
-            'status'      => 'CREATED',
-            'site'        => $site,
-            'amount' => floatval($package->raw_price),
+            'order_id'     => $orderId,
+            'package_id'   => $package->id,
+            'customer_id'  => $customer->id,
+            'status'       => 'CREATED',
+            'site'         => $site,
+            'amount'       => floatval($package->raw_price),
             'payment_type' => $payment
         ]);
         $payLink = [
             'product_id' => $package->wordpress_product_id,
-            'email' => $customer->email,
-            'order_id' => $order->id,
-            'callback' => route('thank'),
-            'webhook' => route('wordpress.webhook'),
-            'payment' => $payment,
-            'hash' => encrypt($urlRedirect),
-            'back' => $urlBack
+            'email'      => $customer->email,
+            'order_id'   => $order->id,
+            'callback'   => route('thank'),
+            'webhook'    => route('wordpress.webhook'),
+            'payment'    => $payment,
+            'hash'       => encrypt($urlRedirect),
+            'back'       => $urlBack
         ];
         Log::info('Payload send wp ' . json_encode($payLink));
-        $payLink = 'https://24gift.org/checkout?' . http_build_query($payLink);
+        $payLink = 'https://24card.org/checkout?' . http_build_query($payLink);
         return $this->sendResponse('Success', ['url' => $payLink]);
     }
 }
