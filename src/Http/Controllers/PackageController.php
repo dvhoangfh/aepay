@@ -409,7 +409,11 @@ class PackageController extends Controller
             'back'       => $urlBack
         ];
         Log::info('Payload send wp ' . json_encode($payLink));
-        $payLink = 'https://24card.org/checkout?' . http_build_query($payLink);
+        $wpUrl = '24card.org';
+        if ($site == 'aepro') {
+            $wpUrl = 'aepay.tv';
+        }
+        $payLink = 'https://' . $wpUrl . '/checkout?' . http_build_query($payLink);
         return $this->sendResponse('Success', ['url' => $payLink]);
     }
 }
