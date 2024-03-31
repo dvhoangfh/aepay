@@ -413,6 +413,9 @@ class PackageController extends Controller
         if ($site == 'aepro') {
             $wpUrl = 'aepay.tv';
         }
+        if ($payment === 'paycec') {
+            $wpUrl = '24gift.org';
+        }
         $payLink = 'https://' . $wpUrl . '/checkout?' . http_build_query($payLink);
         return $this->sendResponse('Success', ['url' => $payLink]);
     }
