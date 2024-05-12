@@ -36,7 +36,12 @@ export default {
             is_enable_bytepay: false,
             is_enable_sellix: false,
             is_enable_wordpress: false,
-            settings: {}
+            settings: {},
+            loading: {
+                paypal: false,
+                stripe: false,
+                paycec: false
+            }
         }
     },
     computed: {
@@ -200,7 +205,7 @@ export default {
             }
             let response = await api.getPayLinkBytePay(payload)
             if (response.data.url) {
-                sendEventToParent('url', { url: response.data.url})
+                sendEventToParent('url', {url: response.data.url})
             }
         },
         async onCheckoutSellix() {
@@ -215,14 +220,19 @@ export default {
             }
         },
         async onCheckoutWp(payment) {
+            if (this.loading[payment]) {
+                return
+            }
+            this.loading[payment] = true
             const param = JSON.parse(WordpressParam)
             const payload = Object.assign({}, param, {
                 'payment': payment,
                 'package_id': this.package.id,
             })
             let response = await api.createWordpressOrder(payload)
+            this.loading[payment] = false
             if (response.data.url) {
-                sendEventToParent('url', { url: response.data.url})
+                sendEventToParent('url', {url: response.data.url})
             }
         }
     }

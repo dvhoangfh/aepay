@@ -42,47 +42,47 @@ class IframeController extends Controller
         $urlCallBack = route('thank');
         $urlBack = $request->get('url_back');
         $wordPressParam = [
-            'user_id' => $userId,
-            'site' => $site,
+            'user_id'      => $userId,
+            'site'         => $site,
             'url_redirect' => $urlRedirect,
-            'back' => $urlBack
+            'back'         => $urlBack
         ];
         $settings = [
-            'is_enable_paypal' => app(SettingService::class)->get('enable_paypal', 'off') === 'on',
-            'is_enable_bytepay' => app(SettingService::class)->get('enable_bytepay', 'off') === 'on',
-            'is_enable_sellix' => app(SettingService::class)->get('enable_sellix', 'off') === 'on',
+            'is_enable_paypal'           => app(SettingService::class)->get('enable_paypal', 'off') === 'on',
+            'is_enable_bytepay'          => app(SettingService::class)->get('enable_bytepay', 'off') === 'on',
+            'is_enable_sellix'           => app(SettingService::class)->get('enable_sellix', 'off') === 'on',
             'is_enable_wordpress_paypal' => app(SettingService::class)->get('enable_wordpress_paypal', 'off') === 'on',
             'is_enable_wordpress_stripe' => app(SettingService::class)->get('enable_wordpress_stripe', 'off') === 'on',
             'is_enable_wordpress_paycec' => app(SettingService::class)->get('enable_wordpress_paycec', 'off') === 'on',
         ];
-    
-    
+
+
         return view('aepay::iframe', [
-            'packages'     => $packages,
-            'user_id'      => $userId,
-            'client_id'    => $request->get('client_id'),
-            'user'         => $user,
-            'plans'        => $paypal->plans,
-            'paymentId'    => $paymentId,
-            'vouchers'     => $vouchers,
-            'site'         => $site,
-            'is_enable_paypal'  => $enablePaypal === 'on',
-            'is_enable_bytepay' => $enableBytepay === 'on',
-            'is_enable_sellix'  => $enableSellix === 'on',
-            'is_enable_wordpress'  => $enableWordpress === 'on',
-            'url_redirect' => $urlRedirect,
-            'url_callback' => $urlCallBack,
-            'url_back' => $urlBack,
-            'wordpressParam' => $wordPressParam,
-            'settings' => $settings
+            'packages'            => $packages,
+            'user_id'             => $userId,
+            'client_id'           => $request->get('client_id'),
+            'user'                => $user,
+            'plans'               => $paypal->plans,
+            'paymentId'           => $paymentId,
+            'vouchers'            => $vouchers,
+            'site'                => $site,
+            'is_enable_paypal'    => $enablePaypal === 'on',
+            'is_enable_bytepay'   => $enableBytepay === 'on',
+            'is_enable_sellix'    => $enableSellix === 'on',
+            'is_enable_wordpress' => $enableWordpress === 'on',
+            'url_redirect'        => $urlRedirect,
+            'url_callback'        => $urlCallBack,
+            'url_back'            => $urlBack,
+            'wordpressParam'      => $wordPressParam,
+            'settings'            => $settings
         ]);
     }
-    
+
     public function getSignature(Request $request): string
     {
         $params = $request->all();
         $signature = $params[Signature::PARAMETER_SIGNATURE] ?? '';
-        
+
         return (string)$signature;
     }
 }
