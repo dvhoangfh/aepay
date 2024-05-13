@@ -230,7 +230,7 @@ export default {
                 'package_id': this.package.id,
             })
             let response = await api.createWordpressOrder(payload)
-            this.loading[payment] = false
+            // this.loading[payment] = false
             if (response.data.url) {
                 sendEventToParent('url', {url: response.data.url})
             }
