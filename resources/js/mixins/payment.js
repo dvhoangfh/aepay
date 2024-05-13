@@ -223,17 +223,21 @@ export default {
             if (this.loading[payment]) {
                 return
             }
-            this.loading[payment] = true
-            const param = JSON.parse(WordpressParam)
-            const payload = Object.assign({}, param, {
-                'payment': payment,
-                'package_id': this.package.id,
-            })
-            let response = await api.createWordpressOrder(payload)
-            // this.loading[payment] = false
-            if (response.data.url) {
-                sendEventToParent('url', {url: response.data.url})
+            try {
+                this.loading[payment] = true
+                const param = JSON.parse(WordpressParam)
+                const payload = Object.assign({}, param, {
+                    'payment': payment,
+                    'package_id': this.package.id,
+                })
+                let response = await api.createWordpressOrder(payload)
+                if (response.data.url) {
+                    sendEventToParent('url', {url: response.data.url})
+                }
+            } catch (e) {
+                this.loading[payment] = false
             }
+
         }
     }
 }
