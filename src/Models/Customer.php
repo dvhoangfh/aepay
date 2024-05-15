@@ -16,7 +16,7 @@ class Customer extends Authenticatable
     use HasFactory;
     use Notifiable;
     use SoftDeletes;
-    
+
     /**
      * The attributes that are mass assignable.
      *
@@ -30,32 +30,47 @@ class Customer extends Authenticatable
         'status',
         'sellix_id',
     ];
-    
+
     protected $hidden = [
         'password',
         'remember_token',
     ];
-    
+
     public const STATUS_ACTIVE = 1;
-    
+
+    public function paypalSubscription(): HasOne
+    {
+        return $this
+            ->hasOne(PaypalSubscription::class, 'customer_id', 'id')
+            ->whereIn('status', ['ACTIVE', 'CANCELLED']);
+    }
+
+    public function wordpress(): HasOne
+    {
+        return $this
+            ->hasOne(WordpressOrder::class, 'customer_id', 'id')
+            ->whereIn('status', ['processing'])
+            ->whereNotNull('ends_at');
+    }
+
     public function paypalSubscriptionActive(): HasOne
     {
         return $this->hasOne(PaypalSubscription::class, 'customer_id', 'id')->where('status', 'ACTIVE')->where('ends_at', '>', now());
     }
-    
+
     public function paypalSubscriptionCancelled(): HasOne
     {
         return $this->hasOne(PaypalSubscription::class, 'customer_id', 'id')->where('status', 'CANCELLED')->where('ends_at', '>', now());;
     }
-    
+
     public function isPremiumPaypal()
     {
         $subActive = $this->paypalSubscriptionActive;
         $subCancelled = $this->paypalSubscriptionCancelled;
-        
+
         return $subActive || $subCancelled;
     }
-    
+
     public function getStatus()
     {
         if ($this->subscribed(Subscription::PLAN_NAME)) {
@@ -66,17 +81,22 @@ class Customer extends Authenticatable
         } else {
             $status = 'Free';
         }
-        
+
         return $status;
     }
-    
+
     public function getIsPremiumAttribute(): bool
     {
         $superUsers = ['dvhoangfh1@gmail.com', 'ducbh198@gmail.com', 'stronger.digi40@gmail.com', 'liemtt91@gmail.com'];
         if (in_array($this->email, $superUsers) || $this->isPremiumPaypal()) {
             return true;
         }
-        
+
         return false;
+    }
+
+    public function getIsMemberPremiumAttribute(): bool
+    {
+        return !is_null($this->paypalSubscription) || !is_null($this->wordpress);
     }
 }

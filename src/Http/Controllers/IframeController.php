@@ -51,12 +51,10 @@ class IframeController extends Controller
             'is_enable_paypal'           => app(SettingService::class)->get('enable_paypal', 'off') === 'on',
             'is_enable_bytepay'          => app(SettingService::class)->get('enable_bytepay', 'off') === 'on',
             'is_enable_sellix'           => app(SettingService::class)->get('enable_sellix', 'off') === 'on',
-            'is_enable_wordpress_paypal' => app(SettingService::class)->get('enable_wordpress_paypal', 'off') === 'on',
+            'is_enable_wordpress_paypal' => $this->getEnablePaypal(clone $user),
             'is_enable_wordpress_stripe' => app(SettingService::class)->get('enable_wordpress_stripe', 'off') === 'on',
             'is_enable_wordpress_paycec' => app(SettingService::class)->get('enable_wordpress_paycec', 'off') === 'on',
         ];
-
-
         return view('aepay::iframe', [
             'packages'            => $packages,
             'user_id'             => $userId,
@@ -84,5 +82,13 @@ class IframeController extends Controller
         $signature = $params[Signature::PARAMETER_SIGNATURE] ?? '';
 
         return (string)$signature;
+    }
+
+    public function getEnablePaypal($user): bool
+    {
+
+        $isEnable = app(SettingService::class)->get('enable_paypal', 'off') === 'on';
+
+        return $isEnable && $user->isMemberPremium;
     }
 }
