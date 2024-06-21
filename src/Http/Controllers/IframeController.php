@@ -87,8 +87,8 @@ class IframeController extends Controller
     public function getEnablePaypal($user): bool
     {
 
-        $isEnable = app(SettingService::class)->get('enable_wordpress_paypal', 'off') === 'on';
+        return app(SettingService::class)->get('enable_wordpress_paypal', 'off') === 'on';
+//            && $user->isMemberPremium;
 
-        return $isEnable && $user->isMemberPremium;
     }
 }
