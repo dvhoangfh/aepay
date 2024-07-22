@@ -383,6 +383,7 @@ class PackageController extends Controller
         $urlRedirect = $request->get('url_redirect');
         $payment = $request->get('payment');
         $urlBack = $request->get('back');
+        $isDev = $request->get('is_dev', false);
         if (empty($packageId) || empty($userId)) {
             return $this->sendError('Missing package or user not found');
         }
@@ -410,7 +411,7 @@ class PackageController extends Controller
         ];
         Log::info('Payload send wp ' . json_encode($payLink));
         $wpUrl = '24card.org';
-        if ($site == 'aepro') {
+        if ($site == 'aepro' || $isDev) {
             $wpUrl = 'aepay.tv';
         }
         if ($payment === 'paycec') {
