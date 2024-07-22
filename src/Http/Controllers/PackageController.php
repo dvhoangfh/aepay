@@ -23,6 +23,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Exception;
+use Illuminate\Support\Str;
 use Sellix\PhpSdk\Sellix;
 use Sellix\PhpSdk\SellixException;
 use Stripe\Order;
@@ -383,7 +384,7 @@ class PackageController extends Controller
         $urlRedirect = $request->get('url_redirect');
         $payment = $request->get('payment');
         $urlBack = $request->get('back');
-        $isDev = $request->get('is_dev', false);
+        $isDev = Str::contains(url()->current(), 'dev');
         if (empty($packageId) || empty($userId)) {
             return $this->sendError('Missing package or user not found');
         }
