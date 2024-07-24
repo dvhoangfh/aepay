@@ -117,6 +117,7 @@ class PackageController extends Controller
      */
     public function thank(Request $request)
     {
+        $isDev = Str::contains(url()->current(), 'dev');
         $checkout = $request->get('checkout');
         if ($request->get('payment_type') === 'bp') {
             $data = $request->all();
@@ -186,10 +187,11 @@ class PackageController extends Controller
                         $urlRedirect = 'https://24sport.tv/thank-you';
                         break;
                     default:
-                        $urlRedirect = 'https://aesport.tv/thank-you';
+                        $urlRedirect = $isDev ? 'https://dev.aesport.tv/thank-you' : 'https://aesport.tv/thank-you';
                         break;
                 }
             }
+            Log::info('url redirect--' . $urlRedirect);
             if ($urlRedirect) {
                 return redirect($urlRedirect . '?' . http_build_query($data));
             }
