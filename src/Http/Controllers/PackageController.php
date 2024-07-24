@@ -175,11 +175,11 @@ class PackageController extends Controller
                 }
             }
             $urlRedirect = '';
+            $dataHash = $data['hash'] ?? '';
             try {
-                $urlRedirect = decrypt($data['hash'] ?? '');
-                dd($urlRedirect);
+                $urlRedirect = decrypt($dataHash);
             } catch (Exception $e) {
-                Log::error('Decrypt hash error ' . $data['hash']);
+                Log::error('Decrypt hash error ' . $dataHash);
             }
             if (!$urlRedirect) {
                 switch ($order->site) {
