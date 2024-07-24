@@ -180,7 +180,7 @@ class PackageController extends Controller
 //            } catch (Exception $e) {
 //                Log::error('Decrypt hash error ' . $dataHash);
 //            }
-            if (!$urlRedirect) {
+            if (empty($urlRedirect)) {
                 switch ($order->site) {
                     case '24h':
                         $urlRedirect = 'https://24sport.tv/thank-you';
@@ -418,7 +418,7 @@ class PackageController extends Controller
             $wpUrl = '24gift.org';
         }
         $payLink = 'https://' . $wpUrl . '/checkout?' . http_build_query($payLink);
-        
+
         return $this->sendResponse('Success', ['url' => $payLink]);
     }
 }
