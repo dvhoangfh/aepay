@@ -174,13 +174,12 @@ class PackageController extends Controller
                     }
                 }
             }
-            $urlRedirect = '';
-            $dataHash = $data['hash'] ?? '';
-            try {
-                $urlRedirect = decrypt($dataHash);
-            } catch (Exception $e) {
-                Log::error('Decrypt hash error ' . $dataHash);
-            }
+            $urlRedirect = $data['hash'] ?? '';
+//            try {
+//                $urlRedirect = decrypt($dataHash);
+//            } catch (Exception $e) {
+//                Log::error('Decrypt hash error ' . $dataHash);
+//            }
             if (!$urlRedirect) {
                 switch ($order->site) {
                     case '24h':
@@ -407,7 +406,7 @@ class PackageController extends Controller
             'callback'   => route('thank'),
             'webhook'    => route('wordpress.webhook'),
             'payment'    => $payment,
-            'hash'       => encrypt($urlRedirect),
+            'hash'       => $urlRedirect,
             'back'       => $urlBack
         ];
         Log::info('Payload send wp ' . json_encode($payLink));
@@ -419,6 +418,7 @@ class PackageController extends Controller
             $wpUrl = '24gift.org';
         }
         $payLink = 'https://' . $wpUrl . '/checkout?' . http_build_query($payLink);
+        
         return $this->sendResponse('Success', ['url' => $payLink]);
     }
 }
