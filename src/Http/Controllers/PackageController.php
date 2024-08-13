@@ -175,7 +175,7 @@ class PackageController extends Controller
                     }
                 }
             }
-            $urlRedirect = $data['hash'] ?? '';
+            $urlRedirect = $request->get('hash') ?? '';
             Log::info('url redirect 1--' . $urlRedirect);
 
 //            try {
