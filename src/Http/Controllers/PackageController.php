@@ -176,6 +176,8 @@ class PackageController extends Controller
                 }
             }
             $urlRedirect = $data['hash'] ?? '';
+            Log::info('url redirect 1--' . $urlRedirect);
+
 //            try {
 //                $urlRedirect = decrypt($dataHash);
 //            } catch (Exception $e) {
