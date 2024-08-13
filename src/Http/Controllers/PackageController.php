@@ -409,9 +409,9 @@ class PackageController extends Controller
         Log::info('Payload send wp ' . json_encode($payLink));
         switch (true) {
             case $site == 'aepro':
+            case $isDev:
                 $wpUrl = 'aepay.tv';
                 break;
-            case $isDev:
             case $site == 'atsport':
                 $wpUrl = 'gsclickpay.com';
                 break;
