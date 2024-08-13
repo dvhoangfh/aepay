@@ -415,7 +415,7 @@ class PackageController extends Controller
         $wpUrl = '24card.org';
         if ($site == 'aepro') {
             $wpUrl = 'aepay.tv';
-        } elseif ($isDev) {
+        } elseif ($site == 'atsport' || $isDev) {
             $wpUrl = 'gsclickpay.com';
         } elseif ($payment === 'paycec') {
             $wpUrl = '24gift.org';
