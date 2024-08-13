@@ -176,13 +176,6 @@ class PackageController extends Controller
                 }
             }
             $urlRedirect = $request->get('hash') ?? '';
-            Log::info('url redirect 1--' . $urlRedirect);
-
-//            try {
-//                $urlRedirect = decrypt($dataHash);
-//            } catch (Exception $e) {
-//                Log::error('Decrypt hash error ' . $dataHash);
-//            }
             if (empty($urlRedirect)) {
                 switch ($order->site) {
                     case '24h':
@@ -416,10 +409,10 @@ class PackageController extends Controller
         Log::info('Payload send wp ' . json_encode($payLink));
         switch (true) {
             case $site == 'aepro':
-            case $site == 'atsport':
                 $wpUrl = 'aepay.tv';
                 break;
             case $isDev:
+            case $site == 'atsport':
                 $wpUrl = 'gsclickpay.com';
                 break;
             case $payment === 'paycec':
