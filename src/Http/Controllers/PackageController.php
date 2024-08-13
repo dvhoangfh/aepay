@@ -179,7 +179,7 @@ class PackageController extends Controller
             if (empty($urlRedirect)) {
                 switch ($order->site) {
                     case '24h':
-                        $urlRedirect = 'https://24sport.tv/thank-you';
+                        $urlRedirect = 'https://24hsport.tv/thank-you';
                         break;
                     default:
                         $urlRedirect = $isDev ? 'https://dev.aesport.tv/thank-you' : 'https://aesport.tv/thank-you';
