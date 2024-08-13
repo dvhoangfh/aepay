@@ -412,7 +412,7 @@ class PackageController extends Controller
             'back'       => $urlBack
         ];
         Log::info('Payload send wp ' . json_encode($payLink));
-        $wpUrl = 'gsclickpay.com';
+        $wpUrl = '24card.org';
         if ($site == 'aepro') {
             $wpUrl = 'aepay.tv';
         } elseif ($isDev) {
