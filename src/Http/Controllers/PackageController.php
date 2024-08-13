@@ -412,13 +412,19 @@ class PackageController extends Controller
             'back'       => $urlBack
         ];
         Log::info('Payload send wp ' . json_encode($payLink));
-        $wpUrl = '24card.org';
-        if ($site == 'aepro') {
-            $wpUrl = 'aepay.tv';
-        } elseif ($site == 'atsport' || $isDev) {
-            $wpUrl = 'gsclickpay.com';
-        } elseif ($payment === 'paycec') {
-            $wpUrl = '24gift.org';
+        switch (true) {
+            case $site == 'aepro':
+            case $site == 'atsport':
+                $wpUrl = 'aepay.tv';
+                break;
+            case $isDev:
+                $wpUrl = 'gsclickpay.com';
+                break;
+            case $payment === 'paycec':
+                $wpUrl = '24gift.org';
+                break;
+            default:
+                $wpUrl = '24card.org';
         }
         $payLink = 'https://' . $wpUrl . '/checkout?' . http_build_query($payLink);
 
