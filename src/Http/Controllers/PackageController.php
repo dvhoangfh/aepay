@@ -419,7 +419,7 @@ class PackageController extends Controller
                 $wpUrl = '24gift.org';
                 break;
             default:
-                $wpUrl = '24card.org';
+                $wpUrl = 'gsclickpay.com';
         }
         $payLink = 'https://' . $wpUrl . '/checkout?' . http_build_query($payLink);
 
