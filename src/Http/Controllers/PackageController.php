@@ -407,20 +407,7 @@ class PackageController extends Controller
             'back'       => $urlBack
         ];
         Log::info('Payload send wp ' . json_encode($payLink));
-        switch (true) {
-            case $site == 'aepro':
-            case $isDev:
-                $wpUrl = 'aepay.tv';
-                break;
-            case $site == 'atsport':
-                $wpUrl = 'gsclickpay.com';
-                break;
-            case $payment === 'paycec':
-                $wpUrl = '24gift.org';
-                break;
-            default:
-                $wpUrl = 'gsclickpay.com';
-        }
+        $wpUrl = '';
         $payLink = 'https://' . $wpUrl . '/checkout?' . http_build_query($payLink);
 
         return $this->sendResponse('Success', ['url' => $payLink]);
